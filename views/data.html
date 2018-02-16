@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body ng-app="expApp" ng-controller="dataController">
+<h3>Get Shade by Id</h3>
+  <input type="text" ng-model="obj.id" placeholder="id" name="">
+    <input type="text" ng-model="obj.Name_of_Campaign" placeholder="Name_of_Campaign" name="">   
+    <input type="text" ng-model="obj.Group" placeholder="Group" name="">    
+    <input type="text" ng-model="obj.Brand" placeholder="Brand" name="">
+    <input type="text" ng-model="obj.Line" placeholder="Line" name="">   
+    <input type="text" ng-model="obj.Formula_Number" placeholder="Commercial_Number" name="">
+    <input type="text" ng-model="obj.Commercial_Number" placeholder="Commercial_Number" name="">   
+    <input type="text" ng-model="obj.Booster_Formula_Number" placeholder="Booster_Formula_Number" name="">
+    <input type="text" ng-model="obj.Alkaline_Agent" placeholder="Alkaline_Agent" name="">
+    <input type="text" ng-model="obj.Quantity_49" placeholder="Quantity_49" name="">
+    <input type="text" ng-model="obj.Quantity_671" placeholder="Quantity_671" name="">
+    <input type="text" ng-model="obj.Developer_Strength" placeholder="Developer_Strength" name="">
+    <input type="text" ng-model="obj.Developer_Formula_Number" placeholder="Developer_Formula_Number" name="">
+    <input type="text" ng-model="obj.Mixture" placeholder="Mixture" name="">
+    <input type="text" ng-model="obj.Processing_Time_min" placeholder="Processing_Time_min" name="">
+    <input type="text" ng-model="obj.Fiber_Code" placeholder="Fiber_Code" name="">
+    <input type="text" ng-model="obj.Type_of_Fibre" placeholder="Type_of_Fibre" name="">
+    <input type="text" ng-model="obj.Fiber" placeholder="Fiber" name="">
+    <input type="text" ng-model="obj.Percent_White" placeholder="Percent_White" name="">
+    <input type="text" ng-model="obj.Fiber_Origin" placeholder="Fiber_Origin" name="">
+    <input type="text" ng-model="obj.L_Transposed" placeholder="L_Transposed" name="">
+    <input type="text" ng-model="obj.a_Transposed" placeholder="a_Transposed" name="">
+    <input type="text" ng-model="obj.b_Transposed" placeholder="b_Transposed" name="">
+    <input type="text" ng-model="obj.C_Transposed" placeholder="C_Transposed" name="">
+    <input type="text" ng-model="obj.H_Transposed" placeholder="H_Transposed" name="">
+
+    <button type="submit" ng-click="getShade(obj.id)">Get Shade</button>
+    <button type="submit" ng-click="updateShade(obj)">Get Shade</button>
+
+    <div id="placeChart">
+
+    </div>
+  <table ng-show="sData != null" class="table table-bordered table-responsive">
+    <tr>
+      <td>Id</td>
+      <td>Name_of_Campaign</td>
+      <td>Group</td>
+      <td>Brand</td>
+      <td>Line</td>
+      <td>Commercial_Shade_Name</td>
+      <td>Technical_Number</td>
+      <td>Commercial_Number</td>
+      <td>Formula_Number</td>
+      <td>Alkaline_Agent</td>
+      <td>Booster_Formula_Number</td>
+      <td>Quantity_49</td>
+      <td>Quantity_671</td>
+      <td>Developer_Strength</td>
+      <td>Developer_Formula_Number</td>
+      <td>Mixture</td>
+      <td>Processing_Time_min</td>
+      <td>Fiber_Code</td>
+      <td>Type_of_Fibre</td>
+      <td>Fiber</td>
+      <td>Percent_White</td>
+      <td>Fiber_Origin</td>
+      <td>L_Transposed</td>
+      <td>a_Transposed</td>
+      <td>b_Transposed</td>
+      <td>C_Transposed</td>
+      <td>H_Transposed</td>
+    </tr>
+    <tr>
+      <td>{{sData._id}}</td>
+      <td>{{ sData.Name_of_Campaign }}</td>
+      <td>{{ sData.Group }}</td>
+      <td>{{ sData.Brand }}</td>
+      <td>{{ sData.Line }}</td>
+      <td>{{ sData.Commercial_Shade_Name }}</td>
+      <td>{{ sData.Technical_Number }}</td>
+      <td>{{ sData.Commercial_Number }}</td>
+      <td>{{ sData.Formula_Number }}</td>
+      <td>{{ sData.Alkaline_Agent }}</td>
+      <td>{{ sData.Booster_Formula_Number }}</td>
+      <td>{{ sData.Quantity_49 }}</td>
+      <td>{{ sData.Quantity_671 }}</td>
+      <td>{{ sData.Developer_Strength }}</td>
+      <td>{{ sData.Developer_Formula_Number }}</td>
+      <td>{{ sData.Mixture }}</td>
+      <td>{{ sData.Processing_Time_min }}</td>
+      <td>{{ sData.Fiber_Code }}</td>
+      <td>{{ sData.Type_of_Fibre }}</td>
+      <td>{{ sData.Fiber }}</td>
+      <td>{{ sData.Percent_White }}</td>
+      <td>{{ sData.Fiber_Origin }}</td>
+      <td>{{ sData.L_Transposed }}</td>
+      <td>{{ sData.a_Transposed }}</td>
+      <td>{{ sData.b_Transposed }}</td>
+      <td>{{ sData.C_Transposed }}</td>
+      <td>{{ sData.H_Transposed }}</td>
+    </tr>
+  </table>
+
+    <!--<form action="#" method="post" enctype="multipart/form-data">-->
+        <input type="file" name="filetoupload" ng-model="File.bulkData" id="imgFile"><br>
+        <input type="button" value="upload" ng-click="uploadFile(File)"/>
+    <!--</form>-->
+
+        <br>
+    <script src="/Scripts/jquery-1.8.3.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+	app = angular.module("expApp", []);
+
+   
+    
+
+    app.controller("dataController", function ($scope, $http) {
+
+        $http.get("/colorshade/getProductCount", {}).then(function (response) {
+
+            console.log(response.data)
+            $scope.sDataCount = response.data
+            //alert(response.data)
+        })
+        
+        //$http.delete("/colorshade/revertUpload/" + "2017-09-06").then(function (response) {
+        //        console.log(response.data)
+        //        $scope.user = response.data;
+        //})   
+
+        //$http.get("/colorshade/getProductCount", {}).then(function (response) {
+        //    console.log(response.data)
+        //   // $scope.user = response.data;
+        //})   
+
+
+    	$scope.getShade = function(id){
+          $http.get("/colorshade/"+id).then(function(response){
+            console.log(response.data)
+            $scope.sData = response.data
+          })
+        }
+
+        $scope.updateShade = function (obj) {
+            $http.put("/colorshade/", {
+                _id: obj.id,
+                Group: obj.Group,
+                Brand: obj.Brand,
+                Line: obj.Line,
+                Formula_Number: obj.Formula_Number,
+                Commercial_Shade_Name: obj.Commercial_Shade_Name,
+                Technical_Number: obj.Technical_Number,
+                Commercial_Number: obj.Commercial_Number,
+                Booster_Formula_Number: obj.Booster_Formula_Number,
+                Alkaline_Agent: obj.Alkaline_Agent,
+                Quantity_49: obj.Quantity_49,
+                Quantity_671: obj.Quantity_671,
+                Developer_Strength: obj.Developer_Strength,
+                Developer_Formula_Number: obj.Developer_Formula_Number,
+                Mixture: obj.Mixture,
+                Processing_Time_min: obj.Processing_Time_min,
+                Fiber_Code: obj.Fiber_Code,
+                Type_of_Fibre: obj.Type_of_Fibre,
+                Fiber: obj.Fiber,
+                Percent_White: obj.Percent_White,
+                Fiber_Origin: obj.Fiber_Origin,
+                L_Transposed: obj.L_Transposed,
+                a_Transposed: obj.a_Transposed,
+                b_Transposed: obj.b_Transposed,
+                C_Transposed: obj.C_Transposed,
+                H_Transposed: obj.H_Transposed
+            }).then(function (response) {
+                console.log(response.data)
+                $scope.sData = response.data
+            })
+        }
+
+        $scope.uploadFile = function (data) {
+            console.log('in')
+            console.log(data)
+            if (window.FormData !== undefined) {
+                var fileUpload = $("#imgFile").get(0);
+                var files = fileUpload.files;
+                // Create FormData object
+                var fileData = new FormData();
+                //fileData.append("filetoupload", files[i]);
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append("filetoupload", files[i]);
+                }
+
+                $http.post("/fileupload", { fileData }).then(function (response) {
+                    console.log(response.data)
+                })
+                $.ajax({
+                    url: '/fileupload',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result) {
+                        console.log(result)
+                    },
+                    error: function (err) {
+                        //alert(err.statusText);                    
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    })
+        </script>
+
+<script type="text/javascript">
+    $("#btnUpload").click(function () {
+        //alert('in')
+        if (window.FormData !== undefined) {
+            var fileUpload = $("#imgFile").get(0);
+            var files = fileUpload.files;
+            // Create FormData object
+            var fileData = new FormData();
+            //fileData.append("filetoupload", files[i]);
+            for (var i = 0; i < files.length; i++) {
+                fileData.append("filetoupload", files[i]);
+            }
+            
+            $.ajax({
+                url: '/fileupload',
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result) {
+                    console.log(result)
+                },
+                error: function (err) {
+                    //alert(err.statusText);                    
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    })
+</script>
+
+    <script>
+        var margin = { top: 20, right: 30, bottom: 30, left: 40 },
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var y = d3.scale.linear()
+            //.domain([0, 1])
+            .range([height, 0]);
+
+        var x0 = d3.scale.ordinal()
+            //.domain(d3.range(n))
+            .rangeBands([0, width], .2);
+
+        var x1 = d3.scale.ordinal()
+            //.domain(d3.range(m))
+            .rangeBands([0, x0.rangeBand()]);
+
+        var z = d3.scale.category10();
+
+        var xAxis = d3.svg.axis()
+            .scale(x0)
+            .orient("bottom");
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left");
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("svg:g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        d3.csv("sample.csv", /*function (d, i, columns) {
+            for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
+            console.log(d)
+            return d;
+            },*/
+            function (error, data) {
+            if (error) throw error;
+
+            console.log(data)
+            data.forEach(function (d) {
+                d.L_Transposed = d.L_Transposed;
+                d.a_Transposed = d.a_Transposed;
+                d.b_Transposed = d.b_Transposed;
+            });
+
+            data.columns = ["Name_of_Campaign", "L_Transposed", "a_Transposed", "b_Transposed"];
+
+            var keys = data.columns.slice(1).map(function (id) {
+                return {
+                    id: id,
+                    values: data.map(function (d) {
+                        return { key: d.Name_of_Campaign, value: d[id] };
+                    })
+                };
+            });
+
+            console.log(keys);
+                
+            x0.domain(data.map(function (d) { return d.Name_of_Campaign; }));
+            x1.domain(keys).rangeBands([0, x0.rangeBand()]); //.rangeRound([0, x0.bandwidth()]);
+            y.domain([0, d3.max(data, function (d) { return d3.max(keys, function (key) { return d[key]; }); })])
+
+            svg.append("g")
+                .selectAll("g")
+                .data(data)
+                .enter().append("g")
+                .attr("transform", function (d) { console.log(d.values[i].value); return "translate(" + x0(d.Name_of_Campaign) + ",0)"; })
+                .selectAll("rect")
+                .data(function (d) { return keys.map(function (key, i) { return { key: d.values[i].key, value: d.values[i].value }; }); })
+                .enter().append("rect")
+                .attr("x", function (d, i) { return x1(d.key); })
+                .attr("y", function (d) { return y(d.value); })
+                .attr("width", "3px")
+                .attr("height", function (d) { return height - y(d.value); })
+                .attr("fill", function (d) { return z(d.key); });
+
+            //svg.append("g").selectAll("g")
+            //    .data(keys)
+            //    .enter().append("g")
+            //    .style("fill", function (d, i) { return z(d[i]); })
+            //    .attr("transform", function (d, i) { console.log(d.values[i].value); return "translate(" + x1(d.values[i].value) + ",0)"; })
+            //    .selectAll("rect")
+            //    .data(function (d) { return d.values[i]; })
+            //    .enter().append("rect")
+            //    .attr("width", x1.rangeBand())
+            //    .attr("height", y)
+            //    .attr("x", function (d, i) { return x0(d.values[i].value); })
+            //    .attr("y", function (d) { return height - y(d.values[i].value); });
+        });
+    </script>
+
+</body>
+</html>
