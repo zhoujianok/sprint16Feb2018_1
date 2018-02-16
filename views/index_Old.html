@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body ng-app="expApp" ng-controller="userController">
+    <input type="button" name="name" value="Test" ng-click="GetValues(filter)" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Filters</h3>
+      <!-- Filteres on data-->
+      <label>L*</label>
+      <input type="number" placeholder="L min" ng-model="filter.L_min" name="L_min" class="form-control">
+      <input type="number" placeholder="L max" ng-model="filter.L_max" name="L_max" class="form-control"><br/>
+
+      <label>a*</label>
+      <input type="number" placeholder="a min" ng-model="filter.a_min" name="" class="form-control">
+      <input type="number" placeholder="a max" ng-model="filter.a_max" name="" class="form-control"><br/>
+
+      <label>b*</label>
+      <input type="number" placeholder="b min" ng-model="filter.b_min" name="" class="form-control">
+      <input type="number" placeholder="b min" ng-model="filter.b_max" name="" class="form-control"><br/>
+
+      <label>Type of Fibre</label>
+      <select placeholder="Type_of_Fibre" multiple ng-model="filter.Type_of_Fibre" name="" class="form-control">    
+        <option value="Meche" selected="selected">Meche</option>
+        <option value="Tampon" selected="selected">Tampon</option>
+      </select>
+
+      <label>White %age</label>
+      <select placeholder="White %age" multiple ng-model="filter.Percent_White" name="" class="form-control">    
+        <option value="0" selected="selected">0</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+        <option value="90" selected="selected">90</option>
+        <option value="100">100</option>
+      </select>
+
+      <label>Fibre Origin</label>
+      <select placeholder="Fibre Origin" multiple ng-model="filter.Fiber_Origin" name="" class="form-control">    
+        <option value="Asiatique" selected="selected">Asiatique</option>
+        <option value="Caucasian">Caucasian</option>
+        <option value="Caucasien" selected="selected">Caucasien</option>
+        <option value="EMPTY">EMPTY</option>
+      </select>
+
+      <label>Group</label>
+      <select multiple name="" ng-model="filter.Group" class="form-control">
+        <option value="HENKEL" selected="selected">HENKEL</option>    
+        <option value="P_G">P_G</option>    
+        <option value="MILBON">MILBON</option>    
+        <option value="FARMEN">FARMEN</option>    
+        <option value="L_OREAL" selected="selected">L_OREAL</option>    
+        <option value="KAO">KAO</option>    
+        <option value="EMPTY">EMPTY</option>    
+        <option value="COMBE">COMBE</option>    
+        <option value="YOUNG GRACE">YOUNG GRACE</option>    
+        <option value="REVLON">REVLON</option>    
+        <option value="ZHANGHUA">ZHANGHUA</option>    
+        <option value="DECOLOR">DECOLOR</option>    
+        <option value="FLOSSIE">FLOSSIE</option>    
+        <option value="XIAN DAI">XIAN DAI</option>    
+        <option value="HOYU">HOYU</option>    
+        <option value="SHISHEIDO">SHISHEIDO</option>    
+        <option value="CARREFOUR">CARREFOUR</option>    
+        <option value="ALFA PARF">ALFA PARF</option>    
+        <option value="FAROUK SYSTEMS INC.">FAROUK SYSTEMS INC.</option>
+        <option value="FRAMESI">FRAMESI</option>    
+        <option value="FAKE L_OREAL">FAKE L_OREAL</option>    
+        <option value="NIELY COSMETICOS">NIELY COSMETICOS</option>    
+        <option value="EUGENE PERMA">EUGENE PERMA</option>    
+        <option value="PROCTER_AND_GAMBLE">PROCTER_AND_GAMBLE</option>  
+        <option value="3C PHARMA">3C PHARMA</option>    
+        <option value="REGIS CORP">REGIS CORP</option> 
+      </select>
+
+      <label>Processing Time min</label>
+      <select placeholder="Processing_Time_min" multiple ng-model="filter.Processing_Time_min" name="" class="form-control">
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20" selected="selected">20</option>
+        <option value="25">25</option>
+        <option value="30" selected="selected">30</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+        <option value="45">45</option>
+        <option value="50">50</option>
+        <option value="55">55</option>
+        <option value="60">60</option>
+        <option value="65">65</option>
+        <option value="UNSPECIFIED">UNSPECIFIED</option>
+      </select>
+
+      <label>Developer Strength</label>
+      <select placeholder="Developer_Strength" multiple ng-model="filter.Developer_Strength" name="" class="form-control">
+        <option value="10V">10V</option>
+        <option value="12.5V">12.5V</option>
+        <option value="12V">12V</option>
+        <option value="13V">13V</option>
+        <option value="15V">15V</option>
+        <option value="17V">17V</option>
+        <option value="18V">18V</option>
+        <option value="20V" selected="selected">20V</option>
+        <option value="23V">23V</option>
+        <option value="25V">25V</option>
+        <option value="30V">30V</option>
+        <option value="35V">35V</option>
+        <option value="38V">38V</option>
+        <option value="6.67V">6.67V</option>
+        <option value="6V">6V</option>
+        <option value="8.5V">8.5V</option>
+        <option value="8V">8V</option>
+        <option value="9V">9V</option>
+        <option value="EMPTY">EMPTY</option>
+      </select>
+      <button type="submit" class="btn btn-primary" ng-click="getRange(filter)">Filter</button>
+    </div>
+    <div class="col-md-8">
+      <!--Data Display-->
+      <span>{{filteredData.length}} records found</span>
+      <table ng-show="filteredData != null" class="table table-bordered table-responsive">
+        <tr>
+          <td>Id</td>
+          <td>Name_of_Campaign</td>
+          <td>Group</td>
+          <td>Brand</td>
+          <td>Line</td>
+          <td>Commercial_Shade_Name</td>
+          <td>Technical_Number</td>
+          <td>Commercial_Number</td>
+          <td>Formula_Number</td>
+          <td>Alkaline_Agent</td>
+          <td>Booster_Formula_Number</td>
+          <td>Quantity_49</td>
+          <td>Quantity_671</td>
+          <td>Developer_Strength</td>
+          <td>Developer_Formula_Number</td>
+          <td>Mixture</td>
+          <td>Processing_Time_min</td>
+          <td>Fiber_Code</td>
+          <td>Type_of_Fibre</td>
+          <td>Fiber</td>
+          <td>Percent_White</td>
+          <td>Fiber_Origin</td>
+          <td>L_Transposed</td>
+          <td>a_Transposed</td>
+          <td>b_Transposed</td>
+          <td>C_Transposed</td>
+          <td>H_Transposed</td>
+        </tr>
+        <tr ng-repeat="d in filteredData">
+          <td>{{d._id}}</td>
+          <td>{{ d.Name_of_Campaign }}</td>
+          <td>{{ d.Group }}</td>
+          <td>{{ d.Brand }}</td>
+          <td>{{ d.Line }}</td>
+          <td>{{ d.Commercial_Shade_Name }}</td>
+          <td>{{ d.Technical_Number }}</td>
+          <td>{{ d.Commercial_Number }}</td>
+          <td>{{ d.Formula_Number }}</td>
+          <td>{{ d.Alkaline_Agent }}</td>
+          <td>{{ d.Booster_Formula_Number }}</td>
+          <td>{{ d.Quantity_49 }}</td>
+          <td>{{ d.Quantity_671 }}</td>
+          <td>{{ d.Developer_Strength }}</td>
+          <td>{{ d.Developer_Formula_Number }}</td>
+          <td>{{ d.Mixture }}</td>
+          <td>{{ d.Processing_Time_min }}</td>
+          <td>{{ d.Fiber_Code }}</td>
+          <td>{{ d.Type_of_Fibre }}</td>
+          <td>{{ d.Fiber }}</td>
+          <td>{{ d.Percent_White }}</td>
+          <td>{{ d.Fiber_Origin }}</td>
+          <td>{{ d.L_Transposed }}</td>
+          <td>{{ d.a_Transposed }}</td>
+          <td>{{ d.b_Transposed }}</td>
+          <td>{{ d.C_Transposed }}</td>
+          <td>{{ d.H_Transposed }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+  <!--<h1>First Express page.</h1>
+  <h2>Register user</h2>-->
+  <!--<form action="/users" method="POST">-->
+  	<!--<input type="text" placeholder="name" name="name" ng-model="user.name"><br><br>
+  	<input type="number" placeholder="age" name="age" ng-model="user.age"><br><br>
+  	<input type="email" placeholder="email" name="email" ng-model="user.email"><br><br>
+  	<button type="submit" ng-click="createUser(user)">Submit</button>-->
+  <!--</form>-->      
+  
+  <!--<form action="/colorshade" method="GET">
+  	<button type="submit">See result</button>
+  </form>-->
+  <a href="/data">Get Data by Id</a>
+  <script type="text/javascript">
+    app = angular.module("expApp", []);
+
+    app.controller("userController", function($scope, $http){
+        //$scope.user = [] 
+        //getShades()       
+        //getRange()
+        $scope.getRange = function(filter){
+          $http.post("/colorshade/range", {
+            L_min: filter.L_min,
+            L_max: filter.L_max,
+            a_min: filter.a_min,
+            a_max: filter.a_max,
+            b_min: filter.b_min,
+            b_max: filter.b_max,
+            Type_of_Fibre: filter.Type_of_Fibre,
+            Percent_White: filter.Percent_White,
+            Fiber_Origin: filter.Fiber_Origin,
+            Group: filter.Group,
+            Processing_Time_min: filter.Processing_Time_min,
+            Developer_Strength: filter.Developer_Strength,
+
+          }).then(function(response){
+            console.log(response.data)
+            $scope.filteredData = response.data
+          })
+        }
+
+        $scope.getShade = function(id){
+          $http.get("/colorshade/"+id).then(function(response){
+            console.log(response.data)
+            $scope.sData = response.data
+          })
+        }
+
+        function getShades(){
+          $http.get("/colorshade", {}).then(function(response){
+            console.log(response.data)
+            $scope.user = response.data;
+          })
+        }
+
+        $scope.createShade = function(shade){
+          console.log(shade)
+          $http.post("/colorshade", { Name_of_Campaign: shade.Name_of_Campaign,
+            Date_Campaign: shade.Date_Campaign,
+            Group: shade.Group,
+            Division: shade.Division,
+            Brand: shade.Brand, 
+            Line: shade.Line,
+            Type_of_Product: shade.Type_of_Product,
+            Product_Form: shade.Product_Form,
+            Formula_Number: shade.Formula_Number,
+            Commercial_Shade_Name: shade.Commercial_Shade_Name,
+            Technical_Number: shade.Technical_Number,
+            Commercial_Number: shade.Commercial_Number,
+            Level: shade.Level,
+            Booster_Formula_Number: shade.Booster_Formula_Number,
+            Alkaline_Agent: shade.Alkaline_Agent,
+            Quantity_49: shade.Quantity_49,
+            Quantity_671: shade.Quantity_671,
+            Developer_Strength: shade.Developer_Strength,
+            Developer_Formula_Number: shade.Developer_Formula_Number,
+            Mixture : shade.Mixture,
+            Processing_Time_min: shade.Processing_Time_min,
+            Fiber_Code: shade.Fiber_Code,
+            Type_of_Fibre: shade.Type_of_Fibre,
+            Fiber: shade.Fiber,
+            Percent_White: shade.Percent_White,
+            Fiber_Origin: shade.Fiber_Origin,
+            L_Transposed: shade.L_Transposed,
+            a_Transposed: shade.a_Transposed,
+            b_Transposed: shade.b_Transposed,
+            C_Transposed: shade.C_Transposed,
+            H_Transposed :shade.H_Transposed }).then(function(response){
+            console.log(response.data)
+          })
+        }
+
+        $scope.deleteUser = function(id){
+          //console.log(id)
+          $http.delete("/colorshade/"+id).then(function(response){
+            console.log(response.data)
+          })
+        }
+
+        $scope.GetValues = function (filter) {
+            //var aa = filter.L_min;
+            alert(filter.Type_of_Fibre);
+            //alert(filter.L_min);
+        }
+
+    })
+  </script>
+</body>
+</html>
