@@ -6,8 +6,8 @@ config.mongodb = {};
 
 config.host = "";
 config.port = process.env.PORT || 3000;
-//config.flask.endpoint = "https://sprintoolbox-python1.azurewebsites.net";
-config.flask.endpoint = "http://127.0.0.1:5555";
+config.flask.endpoint = "https://sprint-python.azurewebsites.net/";
+//config.flask.endpoint = "http://127.0.0.1:5555";
 config.mongodb.host = "localhost"
 config.mongodb.dbname = "LorialTestDB"
 config.encryptionKey = "thisissecretkeyforlorealsprint"
