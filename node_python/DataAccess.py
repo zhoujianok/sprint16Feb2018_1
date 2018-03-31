@@ -10,7 +10,7 @@ import datetime
 
 def get_conn():
     #client = MongoClient("mongodb://localhost:27017")
-    client = MongoClient("mongodb://sprint-dev-db1:X3SgoZmQ0mVZHqaQWXCFWP6DWQ9oUTVxO7rioVLJQF6zEoRk5FEePdXk3795o3zRtWxdbiCAS9yZfzhlj0CuNQ==@sprint-dev-db1.documents.azure.com:10255/LorialTestDB?ssl=true")
+    client = MongoClient("mongodb://sprint-dev-db1:pjq8oZE5XpIIyefImM68esrWC7v2efkGgPxnRyo2LMhD0YrCIAVcWno2EBZXFLo1qTC8Orc0ND2doXZHU9VLEQ==@sprint-dev-db1.documents.azure.com:10255/LorialTestDB?ssl=true&replicaSet=globaldb")
     return client
 
 
