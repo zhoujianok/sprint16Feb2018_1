@@ -211,7 +211,8 @@ module.exports = {
                 client.post(config.flask.endpoint + "/api/calculate/deltavalues", args, function (data, response) {
                     //console.log("ARG data :=> ");
                     //console.log(data);
-                    res.status(200).json(data);
+                    //res.status(200).json(data);
+		    res.end(JSON.stringify(data));
                 });
             }
         });
@@ -226,7 +227,7 @@ module.exports = {
                 res.end(err);
                 res.write('an error occured')
             } else {
-                console.log("Full data :=> ");
+                //console.log("Full data :=> ");
                 //console.log(docs);
                 var client = new Client();
                 var args = {
@@ -238,7 +239,8 @@ module.exports = {
                 client.post(config.flask.endpoint + "/api/calculate/deltavalues", args, function (data, response) {
                     //console.log("ARG data :=> ");
                     //console.log(data);
-                    res.status(200).json(data);
+                    //res.status(200).json(data);
+		    res.end(JSON.stringify(data));
                 });
             }
         });
@@ -259,8 +261,8 @@ module.exports = {
     // update the values where the id matched
     update: function (req, res) {
         var obj = req.body;
-        //console.log("UPDATE => ");
-        //console.log(obj);
+        console.log("UPDATE => ");
+        console.log(obj);
         colorshade.findOneAndUpdate(
             { _id: obj._id },
             {
@@ -298,7 +300,7 @@ module.exports = {
                 if (err) {
                 } else if (!docs) {
                 } else {
-                    //console.log("docs => ")
+                    console.log("docs => ")
                     //console.log(docs)
                     if (req.body.ImageStr.length > 0) {
                         fileupload.ImageUpload(req, res)

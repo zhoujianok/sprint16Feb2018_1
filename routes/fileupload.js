@@ -47,9 +47,9 @@ module.exports = {
     },
 
     ImageUpload: function (req, res) {
-        //console.log("req.body.Sprint_Id_ => ")
-        //console.log(req.body.Sprint_Id)
-        //console.log(req.body.ImageStr)
+        console.log("req.body.Sprint_Id_ => ")
+        console.log(req.body.Sprint_Id)
+        console.log(req.body.ImageStr)
 
         require("fs").writeFile("public/shades/sprint_images/" + req.body.Sprint_Id + ".jpg", req.body.ImageStr, 'base64', function (err) {
             console.log(err);
@@ -71,6 +71,7 @@ module.exports = {
                 //console.log('creating read stream');
                 fs.createReadStream(newpath).pipe(unzip.Extract({ path: 'public' }));
                 var newfolder = files.filetoupload.name.split(".")[0];
+                console.log("NEW FOLDER : " + newfolder);
                 setTimeout(function () {
                     fs.readdir("public/" + newfolder + "/", (err, files) => {
                         files.forEach(file => {
@@ -86,7 +87,7 @@ module.exports = {
                                         var array = JSON.parse("[" + JSON.stringify(docs) + "]");
                                         if (array != null) {
                                             sprintID = array[0].Sprint_Id;
-                                            //console.log("SPRINT : " + sprintID);
+                                            console.log("ZIP SPRINT ID : " + sprintID);
                                             if (sprintID != 0 && sprintID != null) {
                                                 fs.rename("public/" + newfolder + "/" + file, "public/shades/sprint_images/" + sprintID + ".jpg", function (err) {
                                                     if (err) {

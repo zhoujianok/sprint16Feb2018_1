@@ -46,5 +46,5 @@ result = db.colorshades.delete_many({})
 print(result.deleted_count)
 
 # clean the users table
-#result = db.userAuthorization.delete_many({})
-#print(result.deleted_count)
+result = db.userAuthorization.delete_many({})
+print(result.deleted_count)

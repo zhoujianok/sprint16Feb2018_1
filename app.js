@@ -23,9 +23,9 @@ const responseSize = require('response-size');
 
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + '/public'));
-app.use(responseSize({ threshold: 99999999999, enable: true }))
+app.use(responseSize({ threshold: 9999999999999, enable: true }))
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.json({ limit: '150mb' }));
 app.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: true }));
 
 var UserAuth = mongoose.model('userAuthorization');

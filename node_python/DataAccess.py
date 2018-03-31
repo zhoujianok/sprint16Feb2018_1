@@ -71,6 +71,14 @@ def get_counter(db, name):
     return result['seq']
 ##print(get_counter(ddbbb, "userid"))
 
+def get_highestSprintId(db):
+    count = db.colorshades.count()
+    if(count > 0):
+       return db.colorshades.find_one(sort=[("Sprint_Id", -1)])["Sprint_Id"]
+    else:
+        return 0
+    #print("max_sprID", max_sprID)
+    #return 0
 # get and increament the log id counter
 def get_logcounter(db, name = "logid"):
     ret = db.logcounters.update({'_id': str(name)}, {'$inc': {'seq': 1}})

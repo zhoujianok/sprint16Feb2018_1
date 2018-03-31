@@ -5,15 +5,16 @@ config.mongodb = {};
 
 
 config.host = "";
-config.port = process.env.PORT || 3000;
-config.flask.endpoint = "https://sprintoolbox-python1.azurewebsites.net";
+config.port = 3010;
 //config.flask.endpoint = "http://127.0.0.1:5555";
+//config.port = 80;
+config.flask.endpoint = "https://sprintoolbox-python1.azurewebsites.net";
 config.mongodb.host = "localhost"
 config.mongodb.dbname = "LorialTestDB"
 config.encryptionKey = "thisissecretkeyforlorealsprint"
 
 config.su_username = "superadmin";
-config.su_password = "superadmin#123";
+config.su_password = "tisSprs@dmin147";
 config.su_contact = "";
 config.su_email = "su@loreal.com";
 

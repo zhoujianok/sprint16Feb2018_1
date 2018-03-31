@@ -50,6 +50,33 @@ module.exports = {
     getBindValues: function (req, res) {
         _result = {};
         getDistinct();
+        //colorshade.find().distinct('Group', function (error, data) {
+        //    result['Group'] = data;
+        //}).distinct('Type_of_Fibre', function (error, data) {
+        //    result['Type_of_Fibre'] = data;
+        //}).distinct('Fiber', function (error, data) {
+        //    result['Fiber'] = data;
+        //}).distinct('Percent_White', function (error, data) {
+        //    result['Percent_White'] = data
+        //}).distinct('Fiber_Origin', function (error, data) {
+        //    result['Fiber_Origin'] = data;
+        //}).distinct('Processing_Time_min', function (error, data) {
+        //    result['Processing_Time_min'] = data;
+        //}).distinct('Developer_Strength', function (error, data) {
+        //    result['Developer_Strength'] = data;
+        //    //console.log("result => ")
+        //    //console.log(result)
+        //    res.status(200).json(result);
+        //    });
+
+        //function getGroups() {
+        //    colorshade.find().distinct('Group', function (error, data) {
+        //        //console.log("GROUP => " + data);
+        //        //result['Group'] = data;
+        //        _getGroups();
+        //    });
+        //}
+
         function getDistinct() {
             colorshade.find({}, {
                 "Group": Number(1),
@@ -115,23 +142,142 @@ module.exports = {
             });
         }
 
-        function getBrands() {
-            //colorshade.find('Brand', function (error, data) {
-            //    _result['Brand'] = data;
-            //    getResult();
-            //});
+        //function getGroups() {
+        //    colorshade.find({}, {
+        //        "Group": Number(1)
+        //    }, function (error, data) {
+        //        var uniqueGroups = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniqueGroups.indexOf(data[i].Group) === -1) {
+        //                uniqueGroups.push(data[i].Group);
+        //            }
+        //        }
+        //        _result['Group'] = uniqueGroups;
+        //        getTypeOfFibres();
+        //    });
+        //}
 
-            colorshade.find({}, { "Brand": Number(1) }, function (error, data) {
-                var uniqueBrand = [];
-                for (i = 0; i < data.length; i++) {
-                    if (uniqueBrand.indexOf(data[i].Brand) === -1) {
-                        uniqueBrand.push(data[i].Brand);
-                    }
-                }
-                _result['Brand'] = uniqueBrand;
-                getResult();
-            });
-        }
+
+        //function getTypeOfFibres() {
+        //    colorshade.find({}, { "Type_of_Fibre": Number(1) }, function (error, data) {
+        //        var uniqueTypeOfFibre = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniqueTypeOfFibre.indexOf(data[i].Type_of_Fibre) === -1) {
+        //                uniqueTypeOfFibre.push(data[i].Type_of_Fibre);
+        //            }
+        //        }
+        //        _result['Type_of_Fibre'] = uniqueTypeOfFibre;
+        //        getFibers();
+        //    });
+        //}
+
+        //function getFibers() {
+        //    //colorshade.find('Fiber', function (error, data) {
+        //    //    _result['Fiber'] = data;
+        //    //    getPercentWhites();
+        //    //});
+
+        //    colorshade.find({}, { "Fiber": Number(1) }, function (error, data) {
+        //        var uniqueFiber = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniqueFiber.indexOf(data[i].Fiber) === -1) {
+        //                uniqueFiber.push(data[i].Fiber);
+        //            }
+        //        }
+        //        _result['Fiber'] = uniqueFiber;
+        //        getPercentWhites();
+        //    });
+        //}
+
+        //function getPercentWhites() {
+        //    //colorshade.find('Percent_White', function (error, data) {
+        //    //    _result['Percent_White'] = data;
+        //    //    getFiberOrigins();
+        //    //});
+
+        //    colorshade.find({}, { "Percent_White": Number(1) }, function (error, data) {
+        //        var uniquePercentWhite = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniquePercentWhite.indexOf(data[i].Percent_White) === -1) {
+        //                uniquePercentWhite.push(data[i].Percent_White);
+        //            }
+        //        }
+        //        _result['Percent_White'] = uniquePercentWhite;
+        //        getFiberOrigins();
+        //    });
+        //}
+
+        //function getFiberOrigins() {
+        //    //colorshade.find('Fiber_Origin', function (error, data) {
+        //    //    _result['Fiber_Origin'] = data;
+        //    //    getProcessingTimeMins();
+        //    //});
+
+        //    colorshade.find({}, { "Fiber_Origin": Number(1) }, function (error, data) {
+        //        var uniqueFiberOrigin = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniqueFiberOrigin.indexOf(data[i].Fiber_Origin) === -1) {
+        //                uniqueFiberOrigin.push(data[i].Fiber_Origin);
+        //            }
+        //        }
+        //        _result['Fiber_Origin'] = uniqueFiberOrigin;
+        //        getProcessingTimeMins();
+        //    });
+        //}
+
+        //function getProcessingTimeMins() {
+        //    //colorshade.find('Processing_Time_min', function (error, data) {
+        //    //    _result['Processing_Time_min'] = data;
+        //    //    getDeveloperStrengths();
+        //    //});
+
+        //    colorshade.find({}, { "Processing_Time_min": Number(1) }, function (error, data) {
+        //        var uniqueProcessingTimeMin = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniqueProcessingTimeMin.indexOf(data[i].Processing_Time_min) === -1) {
+        //                uniqueProcessingTimeMin.push(data[i].Processing_Time_min);
+        //            }
+        //        }
+        //        _result['Processing_Time_min'] = uniqueProcessingTimeMin;
+        //        getDeveloperStrengths();
+        //    });
+        //}
+
+        //function getDeveloperStrengths() {
+        //    //colorshade.find('Developer_Strength', function (error, data) {
+        //    //    _result['Developer_Strength'] = data;
+        //    //    getBrands();
+        //    //});
+
+        //    colorshade.find({}, { "Developer_Strength": Number(1) }, function (error, data) {
+        //        var uniqueDeveloperStrength = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniqueDeveloperStrength.indexOf(data[i].Developer_Strength) === -1) {
+        //                uniqueDeveloperStrength.push(data[i].Developer_Strength);
+        //            }
+        //        }
+        //        _result['Developer_Strength'] = uniqueDeveloperStrength;
+        //        getBrands();
+        //    });
+        //}
+
+        //function getBrands() {
+        //    //colorshade.find('Brand', function (error, data) {
+        //    //    _result['Brand'] = data;
+        //    //    getResult();
+        //    //});
+
+        //    colorshade.find({}, { "Brand": Number(1) }, function (error, data) {
+        //        var uniqueBrand = [];
+        //        for (i = 0; i < data.length; i++) {
+        //            if (uniqueBrand.indexOf(data[i].Brand) === -1) {
+        //                uniqueBrand.push(data[i].Brand);
+        //            }
+        //        }
+        //        _result['Brand'] = uniqueBrand;
+        //        getResult();
+        //    });
+        //}
 
         function getResult() {
             //console.log("result => ")

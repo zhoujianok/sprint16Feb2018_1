@@ -25,23 +25,24 @@ def read_data(data, isDBExist = True, logid=None):
     usecols = data[0:1]
     usedata = data[0:]
     dataCount = len(usedata)
-    print("DATA COUNT => ", dataCount)
-    sprID = da.get_counter(db, "userid")
-    #print("usedata => ")
-    #print(usedata.shape)
-    #print(len(usedata))
+    #sprID = da.get_counter(db, "userid")
+    max_sprID = da.get_highestSprintId(db)
+    #print("mID => ", mID)
     counter = 0;
     for index, rows in usedata.iterrows():
         #datadict1 = []
         #print rows[0], rows[1], rows[2], rows[3]
         timestamp = str(datetime.datetime.now()).split('.')[0]
-        if(index == 0):
-            sprID = sprID
-        else:
-            sprID = sprID + 1
+        #if(index == 0):
+            #sprID = sprID
+	    #print("SPID 0 => ", sprID)
+        #else:
+        #sprID = sprID + 1
+        max_sprID = max_sprID + 1
+	#print("SPID 1 => ", sprID)
         if(isDBExist):
             #print(rows)
-            dd = {"Sprint_Id":sprID,"Name_of_Campaign":rows[0], "Date_Campaign": rows[1],
+            dd = {"Sprint_Id":max_sprID,"Name_of_Campaign":rows[0], "Date_Campaign": rows[1],
             "Group":rows[2], "Division":rows[3], 
             "Brand":rows[4], "Line":rows[5], "Type_of_Product":rows[6],
             "Product_Form":rows[7], "Formula_Number":rows[8], "Commercial_Shade_Name":rows[9],
@@ -70,7 +71,7 @@ def read_data(data, isDBExist = True, logid=None):
 
         datadict1.append(dd)
         #data_push(datadict1)
-        print("COUNT => ", index)
+        #print("COUNT => ", index)
         #datadict.append(dd)
         #if(dataCount == index-1):
             #break
@@ -125,7 +126,7 @@ def data_push(data):
     for item in data:
         result = da.add_entries(db, item)
         _count = _count + 1
-        print(_count)
+        #print(_count)
     #result = "1"
     if len(result) > 0:
       return 1

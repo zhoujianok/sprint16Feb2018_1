@@ -9,7 +9,7 @@ app.service("SharedProperties", function () {
             return _userName
         },
         getRole: function () {
-            return _userName
+            return _userRole
         },
         setUserData: function (userData) {
             _userName = userData.username;
@@ -46,12 +46,14 @@ app.controller('userController', ['$scope', '$http', 'DTOptionsBuilder', '$timeo
         if ($scope.username == null) {
             window.location.href = '/login';
         }
-        var _role = SharedProperties.getRole();
+        var _role = SharedProperties.getRole().toLowerCase();
+        //alert(_role);
         if (_role == 'superadmin') {
             $scope.isSuperAdmin = true;
             $scope.isAdmin = true;
         }
         else if (_role == 'admin') {
+            //alert('IS ADMIN');
             $scope.isSuperAdmin = false;
             $scope.isAdmin = true;
         }
@@ -78,6 +80,7 @@ app.controller('userController', ['$scope', '$http', 'DTOptionsBuilder', '$timeo
     $scope.getShadeData = {};
 
     // Get distinct values for filter. (Filter Drop Down Binding)
+    var _t0 = performance.now();
     $http.get("/defaultBindValues/").then(function (response) {
         //console.log("DEFAULT BIND VALUES => ")
         //console.log(response.data)
@@ -130,6 +133,12 @@ app.controller('userController', ['$scope', '$http', 'DTOptionsBuilder', '$timeo
         $("#ddlGroup").val("All").change();
         $("#ddlProcessingTime").val("All").change();
         $("#ddlDeveloperStrength").val("All").change();
+
+        var _t1 = performance.now();
+        var _divisor_for_minutes = (_t1 - _t0) / 1000;
+        var _divisor_for_seconds = _divisor_for_minutes % 60;
+        var _seconds = Math.ceil(_divisor_for_seconds);
+        console.log("Call to do filtering took " + _seconds + " Seconds.");
 
         $timeout(function () {
             //setUserDetails();
@@ -367,6 +376,7 @@ app.controller('userController', ['$scope', '$http', 'DTOptionsBuilder', '$timeo
                     Developer_Strength: filter.Developer_Strength,
                     Brand: filter.Brand
                 }).then(function (response) {
+                    console.log(response);  
                     $scope.filteredData = (response.data.data.length == 0) ? response.data.data : JSON.parse(response.data.data); //response.data.data;
                     $scope.chdata = [];
                     $scope.chdata.push((response.data.data.length == 0) ? response.data.data : JSON.parse(response.data.data));
@@ -1042,7 +1052,7 @@ app.controller('userController', ['$scope', '$http', 'DTOptionsBuilder', '$timeo
             $scope.nearestData.push($scope.nearest)
             $scope.nearestFormulaClicked = 1;
             $scope.byAction = true;
-            $(".div-scroller_div").css('height', '924px');
+            //$(".div-scroller_div").css('height', '924px');
         })
     }
 
@@ -3278,7 +3288,7 @@ app.directive('eLine', function () {
                                         borderWidth: 1,
                                         color: "orange",
                                         lineStyle: {
-                                            type: 'solid'
+                                            type: 'dashed'
                                         }
                                     }
                                 }
@@ -3287,13 +3297,13 @@ app.directive('eLine', function () {
                                 name: 'Target',
                                 value: 80,
                                 xAxis: 0,
-                                yAxis: 35,
+                                yAxis: 30,
                                 itemStyle: {
                                     normal: {
                                         borderWidth: 1,
                                         color: "green",
                                         lineStyle: {
-                                            type: 'solid'
+                                            type: 'dashed'
                                         }
                                     }
                                 }
