@@ -2,7 +2,7 @@
   "name": "sprint",
   "version": "1.0.0",
   "description": "Demo app",
-  "main": "server.js",
+  "main": "app.js",
   "author": "Amol",
   "dependencies": {
     "body-parser": "~1.18.2",
