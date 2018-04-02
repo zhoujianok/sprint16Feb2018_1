@@ -1,0 +1,32 @@
+{
+  "name": "loreal_app",
+  "version": "1.0.0",
+  "description": "This is app for SPRINT",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "flask": "^0.2.10",
+    "form-data": "^2.3.1",
+    "formidable": "^1.1.1",
+    "jquery": "^3.2.1",
+    "mongodb": "^3.0.5",
+    "morgan": "^1.8.2",
+    "node": "^9.10.1",
+    "node-rest-client": "^3.1.0",
+    "request": "^2.81.0",
+    "response-size": "^0.0.2",
+    "rotating-file-stream": "^1.2.2",
+    "unzip": "^0.1.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Colorshades"
+  ],
+  "author": "Amol, Vivek",
+  "license": "ISC"
+}
