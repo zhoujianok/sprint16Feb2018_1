@@ -1,0 +1,2273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>L'Oréal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!--<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="/Content/bootstrap-new-Mian.css" rel="stylesheet" />
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/Content/style.css" rel="stylesheet" />
+    <link href="/assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
+    <link href="/Content/style_responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/assets/uniform/css/uniform.default.css" />
+    <link rel="stylesheet" id="themeCSS" href="/filter/css/iThing.css">
+    <link rel="stylesheet" href="/fastselect/buildmin.css">
+    <link href="/assets/jquery-ui/jquery-ui-1.10.1.custom.css" rel="stylesheet" />
+    <link href="/Content/chose/bootstrap-chosen.css" rel="stylesheet" />
+    <link href="/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="/AngularScripts/jquery-1.11.3.min.js"></script>
+    <script src="/AngularScripts/jquery.dataTables.min.js"></script>
+    <script src="/AngularScripts/angular.js"></script>
+    <script src="/AngularScripts/dirPagination.js"></script>
+    <script data-require="angular-datatable.js@1.1.5" data-semver="1.1.5" src="/AngularScripts/angular-datatables.min.js"></script>
+    <script src="/AngularScripts/jszip.js"></script>
+
+    <script src="/AngularScripts/xlsx.js"></script>
+    <script src="/AngularScripts/FileSaver.js"></script>
+    <link rel="stylesheet" href="/fastselect/fastselect.min.css">
+    <script src="/AngularScripts/MainIndexJS.js"></script>
+    <!--<script src="/AngularScripts/echarts-all-3.js"></script>-->
+    <script src="/AngularScripts/echarts.min.js"></script>
+    <script src="/AngularScripts/echarts-gl.min.js"></script>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="fixed-top" ng-app="expApp" ng-controller="userController">
+
+    <!--loader-->
+    <div class="loader-container">
+        <div class="row">
+            <div id="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="lading"></div>
+            </div>
+        </div>
+    </div>
+    <!--loader end -->
+    <!-- BEGIN HEADER -->
+
+
+    <div id="header" class="navbar navbar-inverse navbar-fixed-top">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="navbar-inner">
+            <div class="container-fluid" style="padding-left: 20px !important;">
+                <!-- BEGIN LOGO -->
+                <a class="brand" href="#">
+                    <img src="/img/logo.png" alt="Admin Lab" />
+                </a>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="arrow"></span>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- END  NOTIFICATION -->
+                <div class="top-nav ">
+
+                    <div class="btn-group btn-breadcrumb btn-crum">
+                        <a href="#" class="btn btn-primary Data-Home">Data</a>
+                        <a href="#tab_3_2" id="tabBrowseData" class="btn btn-default new-home Browse_Data1 active1" style="" data-toggle="tab" ng-click="changeVal('bindBrowseData')" ng-model="browseData" ng-init="browseData='0'">Browse Data </a>
+                        <a href="#tab_deltaE" id="tabDeltaE" class="btn btn-default new-home Browse_Data1" style="" data-toggle="tab" ng-click="changeVal('bindDeltaE')" ng-model="deltaEData" ng-init="deltaEData='0'">Delta E </a>
+                        <a href="#" class="btn btn-primary M-Visualization">Visualization</a>
+                        <a href="#eCharts" id="tabBarchart" class="btn btn-default Chart-h Bar_Chart-h" style="display:none;" data-toggle="tab" ng-click="changeVal('barPlot')">Bar Chart</a>
+                        <a href="#eScatterCharts" id="tabScatterPlot" class="btn btn-default Chart-h Scatter_Plot-h" style="display:none;" data-toggle="tab" ng-click="changeVal('scatterPlot')">Scatter Plot</a>
+                        <a href="#eScatter_3D" id="tab3Ddynamics" class="btn btn-default Chart-h Scatter_Plot-h Dynamic-h" style="display:none;" data-toggle="tab" ng-click="changeVal('3D_Dynamics')">3-D Dynamic</a>
+                        <!--<a href="#eCluster_3D" id="tab3Dcluster" class="btn btn-default Chart-h Scatter_Plot-h Dynamic-h" style="display:none;" data-toggle="tab">3-D Cluster</a>-->
+                        <a href="#" class="btn btn-primary M-Analytics">Analytics</a>
+                        <!--<a href="#eClusterChart" data-toggle="tab" style="display:none;" class="Clustering-h btn btn-default c-N-show" id="tabCluster">
+                            <span id="tabClusterChart"> Clustering</span>
+                        </a>-->
+                        <a href="#eCluster_3D" data-toggle="tab" style="display:none;" class="Clustering-h btn btn-default c-N-show" id="tab3Dcluster">
+                            <span> 3-D Clustering</span>  <!--ng-click="changeVal('ClusterChart')"-->
+                        </a>
+                        <a href="#eLineChart" id="tabNearest" data-toggle="tab" class="NearestFormula-h btn btn-default c-N-show" style="display:none;">
+                            <span id="tabNearestFormulaChart"> Nearest Formula </span>  <!--ng-click="changeVal('NearestFormulaChart')"-->
+
+                        </a>
+                        <!--<a href="#eCluster_3D" id="tab3Dcluster" class="btn btn-default Chart-h Scatter_Plot-h Dynamic-h" style="display:none;" data-toggle="tab">3-D Cluster</a>-->
+
+                    </div>
+
+                    <ul class="nav pull-right top-menu">
+                        <!-- BEGIN SUPPORT -->
+                        <!-- END SUPPORT -->
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!--<img src=" " alt="">-->
+                                <span class="username">{{username}}</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                                <li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
+                                <li><a href="#"><i class="icon-calendar"></i> Calendar</a></li>
+                                <li ng-hide="!isSuperAdmin" data-toggle="modal" id="btnTestPopup" ng-click="getAllUsers()" data-target="#addUserModel" data-new="tooltip" title="Add" data-placement="top" ><a href="#"><img src="http://www.nikstroy.ru/images/gray-add-contact-add-user-icon.png" style="width:15px" /> Add User</a></li>
+                                <li class="divider"></li>
+                                <li ng-click="logout()"><a href="#"><i class="icon-key"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                    <!-- END TOP NAVIGATION MENU -->
+                </div>
+            </div>
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN CONTAINER -->
+    <div id="container" class="row-fluid sidebar-closed">
+        <!-- BEGIN SIDEBAR -->
+        <div id="" class="nav-collapse collapse" style="position: absolute;">
+            <div class="hidden-phone"></div>
+
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN PAGE -->
+        <div id="main-content">
+            <!-- BEGIN PAGE CONTAINER-->
+            <div class="container-fluid">
+
+                <!-- BEGIN PAGE CONTENT-->
+
+                <div id="page" class="dashboard">
+
+
+                    <!-- BEGIN SQUARE STATISTIC BLOCKS-->
+                    <div class="square-state" style="margin-top:5px">
+                        <div class="row" style="margin-right: -19px;">
+                            <a class="icon-btn span2" href="#">
+                                <span class="badge badge-info" ng-show="stat != null" ng-cloak>{{stat.Loreal_Product_Count}}</span>
+                                <span class="badge badge-info" ng-show="stat == null"><img src="/assets/pre-loader/loading32px.gif" style="width:15px" /> </span>
+                                <div>Total Loreal Products</div>
+
+                            </a> <a class="icon-btn span2" href="#">
+                                <span class="badge badge-info" ng-show="stat != null" ng-cloak>{{stat.Other_Product_Count}}</span>
+                                <span class="badge badge-info" ng-show="stat == null"><img src="/assets/pre-loader/loading32px.gif" style="width:15px" /> </span>
+                                <div>Competitors Products</div>
+
+                            </a> <a class="icon-btn span2" href="#">
+                                <span class="badge badge-info" ng-show="stat != null" ng-cloak>{{stat.Count}}</span>
+                                <span class="badge badge-info" ng-show="stat == null"><img src="/assets/pre-loader/loading32px.gif" style="width:15px" /> </span>
+                                <div>Total Products Count</div>
+
+                            </a> <a class="icon-btn span2" href="#">
+                                <span class="badge badge-info" ng-show="stat != null" ng-cloak>{{filteredData.length}}</span>
+                                <span class="badge badge-info" ng-show="stat == null"><img src="/assets/pre-loader/loading32px.gif" style="width:15px" /> </span>
+                                <div>Filtered Data</div>
+
+                                <!--modified by Vivek-->
+                            </a> <a class="icon-btn span2" href="#">
+                                <span class="badge badge-info" ng-show="stat != null" ng-cloak>{{stat.total_users}}</span>
+                                <span class="badge badge-info" ng-show="stat == null"><img src="/assets/pre-loader/loading32px.gif" style="width:15px" /> </span>
+                                <div>Total No.Users</div>
+
+                            </a> <a class="icon-btn span2" href="#" ng-click="showNotificationDetails()" data-toggle="modal" data-target="#showNotification" data-new="tooltip" data-placement="top" style="float: right;margin-right: 13px;">
+                                <span class="badge badge-info" ng-init="notificationMessage = 0" ng-cloak>{{notificationMessage}}</span>
+                                <div>Alerts</div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END SQUARE STATISTIC BLOCKS-->
+
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <!--<a class="btn btn-success new  toggle-slide" ng-click="resizeGraph()" style="background:#0274b3;">
+                        <i class="icon-filter"></i>
+                    </a>-->
+                    <div class="row-fluid">
+                        <span id="showdiv" style="display:none;">1</span>
+
+                        <div style="width:100%;">
+                            <div class="one">
+                                <div class="widget">
+                                    <div class="widget-title">
+                                        <h4><i class="icon-filter"></i>Rules</h4>
+                                        <span class="tools">
+
+                                            <button type="submit" id="filterBtn" class="btn btn-info" style="display:block ; float:left; margin-right:2px;" ng-click="getRange(filter); $event.stopPropagation();"> <i class="icon-filter"></i> Filter</button>
+                                            <!--<button type="submit" id="filterBtn" class="btn btn-info" style="display:block" ng-click="getFullData_(filter); $event.stopPropagation();"> <i class="icon-filter"></i> Full Data</button>-->
+                                            <span class="btn btn-info" style="padding-right: 0px;padding-left: 6px;"> Full Data <input type="checkbox" ng-model="isChecked" ng-init="isChecked='0'" ng-change="getFullData_(isChecked, filter)"></span>
+                                            <button class="btn btn-info Go_opacity" ng-click="getData()">Go</button>
+                                        </span>
+                                    </div>
+                                    <div class="widget-body div-scroller" style="overflow-y: auto;overflow-x: hidden;">
+                                        <div class="row-fluid " style="margin-left: -6px; height: 930px !important;">
+                                            <div style="margin-top:0px; ">
+
+                                                <div class="div-scroller_div">
+                                                    <div>
+                                                        <input type="hidden" name="hidMinL" id="hidMinL" ng-model="filter.L_min" ng-init="filter.L_min='20'" />
+                                                        <input type="hidden" name="hidMaxL" id="hidMaxL" ng-model="filter.L_max" ng-init="filter.L_max='50'" />
+
+                                                        <input type="hidden" name="hidMinA" id="hidMinA" ng-model="filter.a_min" ng-init="filter.a_min='20'" />
+                                                        <input type="hidden" name="hidMaxA" id="hidMaxA" ng-model="filter.a_max" ng-init="filter.a_max='50'" />
+
+                                                        <input type="hidden" name="hidMinB" id="hidMinB" ng-model="filter.b_min" ng-init="filter.b_min='20'" />
+                                                        <input type="hidden" name="hidMaxB" id="hidMaxB" ng-model="filter.b_max" ng-init="filter.b_max='50'" />
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="span12" style="padding: 0px;border-right: 1px solid #fff;margin-left: 2px;">
+
+
+
+                                                            <div class="span2" style="text-align: center; display: none;">
+
+                                                                <input type="text" value="20" class="form-control input-width-new" style="padding: 7px 10px;margin-top: 19px;">
+                                                            </div>
+                                                            <div class="span12" style="padding:0px; margin-top: 14px;">
+
+
+                                                                <div id="slider"></div>
+                                                                <div style="float:left;font-size:10px;" class="minl">Min L</div> <div style="float:right; font-size:10px;" class="maxl">Max L</div>
+                                                                <div style="text-align: center;font-weight: 600;padding-top: 3px;color: #0274b3;font-size: 11px;">
+                                                                    <span>L Search Range (From 0 to 100)</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="span2" style="text-align: center;display: none;">
+
+                                                                <input type="text" value="50" class="form-control input-width-new" style="padding: 7px 10px; margin-top: 19px;">
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="span12" style="padding: 0px;border-right: 1px solid #fff;margin-left: 2px;">
+
+
+                                                            <div class="span2" style="text-align: center;display:none;">
+
+                                                                <input type="text" value="20" class="form-control input-width-new" style="padding: 7px 10px; margin-top: 19px;">
+                                                            </div>
+                                                            <div class="span12 " style="padding:0px;margin-top: 14px;">
+                                                                <div id="slider2"></div>
+                                                                <div style="float:left;font-size:10px;" class="mina">Min a</div> <div style="float:right;font-size:10px;" class="maxa">Max a</div>
+                                                                <div style="text-align: center;font-weight: 600;padding-top: 3px;color: #0274b3;font-size: 11px;">  <span>a Search Range (From -60 to 60)</span></div>
+
+                                                            </div>
+                                                            <div class="span2" style="text-align: center; display:none;">
+                                                                <div>Max a</div>
+                                                                <input type="text" value="50" class="form-control input-width-new" style="padding: 7px 10px; margin-top: 19px;">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="span12" style="padding: 1px; margin-left: 2px;">
+
+                                                            <div class="span2" style="text-align: center; display:none">
+                                                                <div>Min b</div>
+                                                                <input type="text" value="20" class="form-control input-width-new" style="padding: 7px 10px;margin-top: 19px;">
+                                                            </div>
+                                                            <div class="span12" style="padding:0px; margin-top: 14px;">
+                                                                <div id="slider3"></div>
+                                                                <div style="float:left;font-size:10px;" class="minb">Min b</div> <div style="float:right;font-size:10px;" class="maxb">Max b</div>
+                                                                <div style="text-align: center;font-weight: 600;padding-top: 3px;color: #0274b3;font-size: 11px;">  <span>b Search Range (From -60 to 60)</span></div>
+                                                            </div>
+                                                            <div class="span2" style="text-align: center; display:none">
+                                                                <div>Max b</div>
+                                                                <input type="text" value="50" class="form-control input-width-new" style="padding: 7px 10px;margin-top: 19px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="span12" style="">
+
+                                                    <div class="" style="margin-top: 0px;background: #f8f8f8;overflow: hidden;padding-bottom: 10px;padding-top 7px;">
+                                                        <div class="text-center">
+                                                            <div class="" style="margin-bottom: 7px; margin-top:10px; font-weight:600;color: #0274b3;">Set Target L-a-b</div>
+                                                            <div class="col-lg-4 padding-L_A_B">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon" id="basic-addon1">L</span>
+                                                                    <input type="number" class="form-control" placeholder=" " aria-describedby="basic-addon1" step="0.1" min="0" max="100" id="txtL" ng-model="filter.L" ng-init="filter.L=55">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 padding-L_A_B">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon" id="basic-addon1">a</span>
+                                                                    <input type="number" class="form-control" placeholder=" " aria-describedby="basic-addon1" step="0.1" min="-60" max="60" id="txtA" ng-model="filter.a" ng-init="filter.a=30">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 padding-L_A_B">
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon" id="basic-addon1">b</span>
+                                                                    <input type="number" class="form-control" placeholder=" " aria-describedby="basic-addon1" step="0.1" min="-60" max="60" id="txtB" ng-model="filter.b" ng-init="filter.b=30">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="div-scroller_div">
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                Fiber Type <!--<button class="attireCodeToggleBtn iconCode" type="button">Show code</button>-->
+                                                            </p>
+                                                            <div id="divFibreType">
+                                                                <select placeholder="Fibre Type" class="chosen-select form-control" id="ddlFibreType" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                Fiber
+                                                            </p>
+                                                            <div id="divFibre">
+                                                                <select placeholder="Fibre" class="chosen-select form-control" id="ddlFibre" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                Brand
+                                                            </p>
+                                                            <div id="divBrand">
+                                                                <select placeholder="Fiber Origin" class="chosen-select form-control" id="ddlBrand" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                White %age
+                                                            </p>
+                                                            <div id="divPercentWhite">
+                                                                <select placeholder="White %age" class="chosen-select form-control" id="ddlWPercent" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit">Submit</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                Fiber Origin
+                                                            </p>
+                                                            <div id="divFiberOrigin">
+                                                                <select placeholder="Fiber Origin" class="chosen-select form-control" id="ddlFiberOrigin" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                Group
+                                                            </p>
+                                                            <div id="divGroup">
+                                                                <select placeholder="Group" class="chosen-select form-control" id="ddlGroup" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                Processing Time min
+                                                            </p>
+                                                            <div id="divProcessingTime">
+                                                                <select class="chosen-select form-control" placeholder="Processing_Time_min" id="ddlProcessingTime" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-lg-12 new-p">
+                                                        <form class="attireCodeToggleBlock" action="">
+                                                            <p class="attireTextType2">
+                                                                Developer Strength
+                                                            </p>
+                                                            <div id="divDeveloperStrength">
+                                                                <select class="chosen-select form-control" placeholder="Developer_Strength" id="ddlDeveloperStrength" multiple>
+                                                                    <option value="All">All</option>
+                                                                </select>
+                                                                <button class="submitBtn" type="submit" id="submitFilter">Submit</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="two">
+                                <div class="widget min-h-widget">
+                                    <div class="widget-title">
+                                        <h4><i class="icon-reorder"></i>Data</h4>
+                                        <span class="tools">
+                                            <button ng-hide="!isAdmin" type="button" class="btn btn-info btn-lg myBtn" data-toggle="modal" id="btnTestPopup" data-target="#addModal" data-new="tooltip" title="Add" data-placement="top"><i class="icon-plus-sign"></i> Add New</button>
+                                        </span>
+                                        <span class="tools " ng-hide="userLogs.length == 0">
+                                            <span class="n-d-l">
+                                                <select id="log" ng-model="logid" style="margin-bottom: 0px;float: left; width: 143px;height: 31px;margin-right: 1px;" class="form-control" ng-cloak>
+                                                    <option ng-repeat="log in userLogs" value="{{log.logid}}">{{log.logid}} : {{log.date}}</option>
+                                                </select>
+                                                <button type="button" class="btn  btn-info btn-lg myBtn" title="Revert Database to Previous state" ng-click="revertUploadedData()"><i class="icon-minus-sign"></i> Revert Data</button>
+                                            </span>
+                                        </span>
+                                        <span class="tools" ng-hide="!isAdmin">
+                                            <div class="control-group" style="margin-bottom: 0px;">
+                                                <div class="controls pull-left" style="margin-right: 5px;">
+                                                    <div class="fileupload fileupload-new" data-provides="fileupload" style="margin-bottom: 0px;">
+                                                        <div class="input-append" style="margin-bottom: 0px;">
+                                                            <span class="btn btn-file btn-success btn-info" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;">
+                                                                <i class="icon icon-picture" style="color:#fff;"></i>
+                                                                Upload Images
+                                                                <input type="file" name="filetoupload" id="zipFile" class="form-control"><br>
+                                                            </span>
+                                                            <!--class="btn btn-info btn-lg myBtn"-->
+                                                            <a href="#" class="btn fileupload-exists btn-success btn-info" ng-click="uploadZip()"><i class="icon-upload-alt"></i> Upload</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="controls pull-left">
+                                                    <div class="fileupload fileupload-new" data-provides="fileupload" style="margin-bottom: 0px;">
+                                                        <div class="input-append" style="margin-bottom: 0px;">
+                                                            <div style="font-size: 12px;" class="uneditable-input">
+                                                                <i class="icon-file fileupload-exists"></i>
+                                                                <span class="fileupload-preview"></span>
+                                                            </div>
+                                                            <span class="btn btn-file btn-success btn-info">
+                                                                <span class="fileupload-new"><i class="icon-file"></i> Bulk Upload</span>
+                                                                <span class="fileupload-exists"><i class="icon-refresh"></i> Bulk Upload</span>
+                                                                <input type="file" name="filetoupload" id="imgFile" class="form-control"><br>
+                                                            </span>
+                                                            <!--class="btn btn-info btn-lg myBtn"-->
+                                                            <a href="#" class="btn fileupload-exists btn-success btn-info" ng-click="uploadFile(File)"><i class="icon-upload-alt"></i> Upload</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <!--BEGIN TABS-->
+                                                <div class="tabbable tabbable-custom tabs-left">
+                                                    <!-- Only required for left/right tabs -->
+
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane" id="tab_3_1">
+
+                                                        </div>
+                                                        <div class="tab-pane active" id="tab_3_2">
+                                                            <div excel-export export-data="exportData" file-name="{{fileName}}"></div>
+                                                            <form class="form-inline">
+                                                                <div class="form-group pull-right">
+                                                                    <span class="pull-left">  <label class="text-lable">Search</label></span>
+                                                                    <span class="pull-left new-input">  <input type="text" ng-model="searchBrowse" ng-change="search_change()" class="form-control" placeholder="Search"></span>
+                                                                </div>
+                                                                <div class="form-group pull-left">
+                                                                    <span class="pull-left">
+                                                                        <label class="text-lable">Page Size</label>
+                                                                    </span>
+                                                                    <span class="pull-left new-input">
+                                                                        <select ng-model="pageSizeBrowseData" ng-init="pageSizeBrowseData = 10" class="form-control">
+                                                                            <option value="10" selected>10</option>
+                                                                            <option value="25">25</option>
+                                                                            <option value="50">50</option>
+                                                                            <option value="100">100</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                            </form>
+                                                            <div>
+                                                                <div class="clearfix"></div>
+                                                                <table class="table table-hover table-condensed table-bordered Dynamic-table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Action</th>
+                                                                            <th>Image</th>
+                                                                            <th ng-click="sort('Name_of_Campaign')" class="hidden-phone">
+                                                                                Name Of Campaign
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Name_of_Campaign'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Group')" class="hidden-phone" id="thGroup">
+                                                                                Group
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Group'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Brand')" class="hidden-phone">
+                                                                                Brand
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Brand'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Line')" class="hidden-phone">
+                                                                                Line
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Line'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Reflect')" class="hidden-phone">
+                                                                                Reflect
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Reflect'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Primary_Reflect')" class="hidden-phone">
+                                                                                Primary Reflect
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Primary_Reflect'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Secondary_Reflect')" class="hidden-phone">
+                                                                                Secondary Reflect
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Secondary_Reflect'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Commercial_Shade_Name')" class="hidden-phone">
+                                                                                Commercial Shade Name
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Commercial_Shade_Name'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Technical_Number')" class="hidden-phone">
+                                                                                Technical Number
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Technical_Number'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Commercial_Number')" class="hidden-phone">
+                                                                                Commercial Number
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Commercial_Number'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Formula_Number')" class="hidden-phone">
+                                                                                Formula Number
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Formula_Number'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('deltaE_mean')" class="hidden-phone">
+                                                                                DeltaE Range Mean
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='deltaE_mean'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('deltaE_target')" class="hidden-phone">
+                                                                                DeltaE Target
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='deltaE_target'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Alkaline_Agent')" class="hidden-phone">
+                                                                                Alkaline Agent
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Alkaline_Agent'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Booster_Formula_Number')" class="hidden-phone">
+                                                                                Booster Formula Number
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Booster_Formula_Number'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Quantity_49')" class="hidden-phone">
+                                                                                Quantity 49
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Quantity_49'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Quantity_671')" class="hidden-phone">
+                                                                                Quantity 671
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Quantity_671'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Developer_Strength')" class="hidden-phone">
+                                                                                Developer Strength
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Developer_Strength'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Developer_Formula_Number')" class="hidden-phone">
+                                                                                Developer Formula Number
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Developer_Formula_Number'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Mixture')" class="hidden-phone">
+                                                                                Mixture
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Mixture'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Processing_Time_min')" class="hidden-phone">
+                                                                                Processing Time(min)
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Processing_Time_min'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Fiber_Code')" class="hidden-phone">
+                                                                                Fiber Code
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Fiber_Code'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Type_of_Fibre')" class="hidden-phone">Type Of Fibre</th>
+                                                                            <th ng-click="sort('Fiber')" class="hidden-phone">
+                                                                                Fiber
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Type_of_Fibre'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Percent_White')" class="hidden-phone">
+                                                                                Percent White
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Percent_White'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('Fiber_Origin')" class="hidden-phone">
+                                                                                Fiber Origin
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Fiber_Origin'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('L_Transposed')" class="hidden-phone">
+                                                                                L Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='L_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('a_Transposed')" class="hidden-phone">
+                                                                                a Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='a_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('b_Transposed')" class="hidden-phone">
+                                                                                b Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='b_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('C_Transposed')" class="hidden-phone">
+                                                                                C Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='C_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th ng-click="sort('H_Transposed')" class="hidden-phone">
+                                                                                H Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='H_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="New-table-tbody">
+                                                                        <tr bindonce dir-paginate="d in sea_fil_data = (filteredData | filter:searchBrowse) |orderBy:sortKey:reverse|itemsPerPage:pageSizeBrowseData" current-page="currentPage" pagination-id="pgBrowseData">
+                                                                            <!--| limitTo: 10-->
+                                                                            <td class="flex-add new-align ">
+                                                                                <!--<button ng-hide="!isAdmin" type="button" class="btn btn-info btn-lg myBtn btn-change-add" data-toggle="modal" id="btnTestPopup" data-target="#myModal" ng-click="ShowPopUp(d)" data-new="tooltip" title="Edit" data-placement="top"><i class="icon-edit"></i></button>-->
+                                                                                <button ng-hide="!isAdmin" type="button" class="btn btn-info btn-lg myBtn btn-change-add" data-toggle="modal" id="btnTestPopup" ng-click="deleteShade(d)" data-new="tooltip" title="Delete" data-placement="top"><i class="icon-trash"></i></button>
+
+                                                                                <button type="button" class="btn btn-info btn-lg myBtn btn-change-add NearestFormula-h" href="#eLineChart" data-toggle="tab" id="btnTestPopup" ng-click="getNearestFormulaAction(d)" data-new="tooltip" title="Go To Nearest Formula" data-placement="top"><i class="icon-random"></i></button>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span class="rel-div">
+                                                                                    <span class="big-img"> <img ng-src="/shades/sprint_images/{{d.Sprint_Id}}.jpg" style="width: 41px;height: 33px;" data-img="/shades/sprint_images/{{d.Sprint_Id}}.jpg" /></span>
+                                                                                    <img ng-src="/shades/sprint_images/{{d.Sprint_Id}}.jpg" style="width: 100%;height: 50px;" class="small-img" />
+                                                                                </span>
+                                                                            </td>
+                                                                            <td ng-cloak>{{ d.Name_of_Campaign == 'EMPTY' ? 'N/A' : d.Name_of_Campaign}}</td>
+                                                                            <td ng-cloak>{{ d.Group == 'EMPTY' ? 'N/A' : d.Group}}</td>
+                                                                            <td ng-cloak>{{ d.Brand == 'EMPTY' ? 'N/A' : d.Brand}}</td>
+                                                                            <td ng-cloak>{{ d.Line == 'EMPTY' ? 'N/A' : d.Line}}</td>
+                                                                            <td ng-cloak>{{ d.Reflect}}</td>
+                                                                            <td ng-cloak>{{ d.Primary_Reflect}}</td>
+                                                                            <td ng-cloak>{{ d.Secondary_Reflect}}</td>
+                                                                            <td ng-cloak>{{ d.Commercial_Shade_Name == 'EMPTY' ? 'N/A' : d.Commercial_Shade_Name}}</td>
+                                                                            <td ng-cloak>{{ d.Technical_Number }}</td>
+                                                                            <td ng-cloak>{{ d.Commercial_Number }}</td>
+                                                                            <td ng-cloak>
+                                                                                <!--{{ d.Formula_Number }}-->
+                                                                                <a title="UNSPECIFIED" href="http://formules-ri.loreal.wans/formules/Formules/ficheformule.asp?cd={{ d.Formula_Number }}" target="_blank">{{ d.Formula_Number }}</a>
+                                                                            </td>
+                                                                            <td ng-cloak>{{ d.deltaE_mean | number: 2}}</td>
+                                                                            <td ng-cloak>{{ d.deltaE_target | number: 2}}</td>
+                                                                            <td ng-cloak>{{ d.Alkaline_Agent }}</td>
+                                                                            <td ng-cloak>{{ d.Booster_Formula_Number == 'EMPTY' ? 'N/A' : d.Booster_Formula_Number}}</td>
+                                                                            <td ng-cloak>{{ d.Quantity_49 }}</td>
+                                                                            <td ng-cloak>{{ d.Quantity_671 }}</td>
+                                                                            <td ng-cloak>{{ d.Developer_Strength }}</td>
+                                                                            <td ng-cloak>{{ d.Developer_Formula_Number }}</td>
+                                                                            <td ng-cloak>{{ d.Mixture }}</td>
+                                                                            <td ng-cloak class="text-right">{{ d.Processing_Time_min }}</td>
+                                                                            <td ng-cloak>{{ d.Fiber_Code }}</td>
+                                                                            <td ng-cloak>{{ d.Type_of_Fibre }}</td>
+                                                                            <td ng-cloak>{{ d.Fiber }}</td>
+                                                                            <td ng-cloak class="text-right">{{ d.Percent_White }}</td>
+                                                                            <td ng-cloak>{{ d.Fiber_Origin }}</td>
+                                                                            <td ng-cloak class="text-right">{{ d.L_Transposed | number: 2}}</td>
+                                                                            <td ng-cloak class="text-right">{{ d.a_Transposed | number: 2}}</td>
+                                                                            <td ng-cloak class="text-right">{{ d.b_Transposed | number: 2}}</td>
+                                                                            <td ng-cloak class="text-right">{{ d.C_Transposed | number: 2}}</td>
+                                                                            <td ng-cloak class="text-right">{{ d.H_Transposed | number: 2}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="range-label">Displaying {{ pg_lower }} - {{ pg_upper }} of {{ pg_total }} <span ng-show="pg_total < filteredData.length">(filtered from {{filteredData.length}} total entries)</span></div>
+                                                                <dir-pagination-controls max-size="10"
+                                                                                         direction-links="true"
+                                                                                         boundary-links="true"
+                                                                                         pagination-id="pgBrowseData"
+                                                                                         on-page-change="pageChangeHandler(currentPage)">
+                                                                </dir-pagination-controls>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tab-pane" id="tab_deltaE">
+                                                            <div>
+                                                                <form class="form-inline">
+                                                                    <div class="form-group pull-right">
+                                                                        <span class="pull-left">
+                                                                            <label>Search</label>
+                                                                        </span>
+                                                                        <span class="pull-left new-input"><input type="text" ng-model="search" ng-change="de_search_change()" class="form-control" placeholder="Search" style="margin-right: 0px;"></span>
+
+                                                                    </div>
+                                                                    <div class="form-group pull-left">
+                                                                        <span class="pull-left">
+                                                                            <label>Page Size</label>
+                                                                        </span>
+                                                                        <span class="pull-left new-input">
+                                                                            <select ng-model="pageSizeDeltaE" ng-init="pageSizeDeltaE = 10" class="form-control">
+                                                                                <option value="10" selected>10</option>
+                                                                                <option value="25">25</option>
+                                                                                <option value="50">50</option>
+                                                                                <option value="100">100</option>
+                                                                            </select>
+                                                                        </span>
+                                                                    </div>
+                                                                </form>
+                                                                <div class="clearfix"></div>
+                                                                <table class="table table-hover table-condensed table-bordered Dynamic-table" id="tblDeltaE" style="margin-top:3px;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Action</th>
+                                                                            <th>Image</th>
+                                                                            <!--<th class="hidden-phone" ng-click="sort('Sprint_Id')">
+                                                                                Sprint_Id
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Sprint_Id'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>-->
+                                                                            <th class="hidden-phone" ng-click="sort('Division')">
+                                                                                Division
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Division'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('Brand')">
+                                                                                Brand
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Brand'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('Commercial_Shade_Name')">
+                                                                                Commercial Shade Name
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Commercial_Shade_Name'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('Commercial_Number')">
+                                                                                Commercial Number
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Commercial_Number'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('deltaE_mean')">
+                                                                                DeltaE Range Mean
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='deltaE_mean'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('deltaE_target')">
+                                                                                DeltaE Target
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='deltaE_target'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('L_Transposed')">
+                                                                                L Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='L_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('a_Transposed')">
+                                                                                a Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='a_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('b_Transposed')">
+                                                                                b Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='b_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('C_Transposed')">
+                                                                                C Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='C_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('H_Transposed')">
+                                                                                H Transposed
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='H_Transposed'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('Date_Campaign')">
+                                                                                Date Of Campaign
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Date_Campaign'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('Group')">
+                                                                                Group
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Group'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                            <th class="hidden-phone" ng-click="sort('Fiber_Code')">
+                                                                                Fibre Code
+                                                                                <span class="glyphicon sort-icon" ng-show="sortKey=='Fiber_Code'" ng-class="{'icon-chevron-up':reverse,'icon-chevron-down':!reverse}"></span>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="New-table-tbody">
+                                                                        <tr bindonce dir-paginate="d in sea_fil_data_de = (filteredDeltaEData |filter:search) |orderBy:sortKey:reverse|itemsPerPage:pageSizeDeltaE" current-page="currentDeltaEPage" pagination-id="pgDeltaE">
+                                                                            <!--| limitTo: 10-->
+                                                                            <td class="flex-add new-align">
+                                                                                <!--<button ng-hide="!isAdmin" type="button" class="btn btn-info btn-lg myBtn btn-change-add" data-toggle="modal" id="btnTestPopup" data-target="#myModal" ng-click="ShowPopUp(d)" data-new="tooltip" title="Edit" data-placement="top"><i class="icon-edit"></i></button>-->
+                                                                                <button ng-hide="!isAdmin" type="button" class="btn btn-info btn-lg myBtn btn-change-add" data-toggle="modal" id="btnTestPopup" ng-click="deleteShade(d)" data-new="tooltip" title="Delete" data-placement="top"><i class="icon-trash"></i></button>
+                                                                                <button type="button" class="btn btn-info btn-lg myBtn btn-change-add NearestFormula-h" href="#eLineChart" data-toggle="tab" id="btnTestPopup" ng-click="getNearestFormulaAction(d)" data-new="tooltip" title="Go To Nearest Formula" data-placement="top"><i class="icon-random"></i></button>
+                                                                            </td>
+                                                                            <td>
+                                                                                <span class="rel-div">
+                                                                                    <span class="big-img"> <img ng-src="/shades/sprint_images/{{d.Sprint_Id}}.jpg" style="width: 41px;height: 33px;" data-img="/shades/sprint_images/{{d.Sprint_Id}}.jpg" /></span>
+                                                                                    <img ng-src="/shades/sprint_images/{{d.Sprint_Id}}.jpg" style="width: 100%;height: 50px;" class="small-img" />
+                                                                                </span>
+                                                                            </td>
+                                                                            <!--<td>{{ d.Sprint_Id }}</td>-->
+                                                                            <td>{{ d.Division }}</td>
+                                                                            <td>{{ d.Brand }}</td>
+                                                                            <td>{{ d.Commercial_Shade_Name }}</td>
+                                                                            <td>{{ d.Commercial_Number }}</td>
+                                                                            <td>{{ d.deltaE_mean | number: 2}}</td>
+                                                                            <td>{{ d.deltaE_target | number: 2}}</td>
+                                                                            <td class="text-right">{{ d.L_Transposed | number: 2}}</td>
+                                                                            <td class="text-right">{{ d.a_Transposed | number: 2}}</td>
+                                                                            <td class="text-right">{{ d.b_Transposed | number: 2}}</td>
+                                                                            <td class="text-right">{{ d.C_Transposed | number: 2}}</td>
+                                                                            <td class="text-right">{{ d.H_Transposed | number: 2}}</td>
+                                                                            <td>{{ d.Date_Campaign }}</td>
+                                                                            <td>{{ d.Group }}</td>
+                                                                            <td>{{ d.Fiber_Code }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="range-label">Displaying {{ pg_de_lower }} - {{ pg_de_upper }} of {{ pg_de_total }} <span ng-show="pg_de_total < filteredDeltaEData.length">(filtered from {{filteredDeltaEData.length}} total entries)</span></div>
+                                                                <dir-pagination-controls max-size="10"
+                                                                                         direction-links="true"
+                                                                                         boundary-links="true"
+                                                                                         pagination-id="pgDeltaE"
+                                                                                         on-page-change="delteEPageChangeHandler(currentDeltaEPage)">
+                                                                </dir-pagination-controls>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_3_3">
+                                                            <p>Filtered Data</p>
+                                                            <table class="table table-striped table-bordered sample_1">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>One</th>
+                                                                        <th class="hidden-phone">Two</th>
+                                                                        <th class="hidden-phone">Three</th>
+                                                                        <th class="hidden-phone">Four</th>
+                                                                        <th class="hidden-phone">Five</th>
+                                                                        <th class="hidden-phone">Six</th>
+                                                                        <th class="hidden-phone">Seven</th>
+                                                                        <th class="hidden-phone">Eight</th>
+                                                                        <th class="hidden-phone">Nine</th>
+                                                                        <th class="hidden-phone">Ten</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone </td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone </td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>doe</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+
+                                                                        <td>Jhone</td>
+                                                                        <td class="hidden-phone">denim </td>
+                                                                        <td class="hidden-phone">probably</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">Nesciunt</td>
+                                                                        <td class="hidden-phone">tempor</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">shorts</td>
+                                                                        <td class="hidden-phone">butcher</td>
+                                                                        <td class="hidden-phone">synth</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_3_6">
+                                                            <p>3-D Dynamic</p>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+
+                                                                    <img src="/img/images/01.PNG" style="width:100%;" alt="3-Daynamic">
+                                                                </div>
+                                                                <div class="col-lg-5">
+                                                                    <div class="">
+                                                                        <p style="font-size: 13px;font-weight: 600;color: #0274b3;">Number of ticks</p>
+                                                                        <input type="number" value="6">
+                                                                    </div>
+
+                                                                    <div class="">
+                                                                        <p style="font-size: 13px;font-weight: 600;color: #0274b3;">Choose Z axis:</p>
+                                                                        <div class="controls">
+                                                                            <label class="radio">
+                                                                                <div class="radio" id="uniform-undefined">
+                                                                                    <span class="checked">
+                                                                                        <input name="optionsRadios2" value="option1" style="opacity: 0;" type="radio">
+                                                                                    </span>
+                                                                                </div>
+                                                                                L<sup>*</sup>
+                                                                            </label>
+                                                                            <label class="radio">
+                                                                                <div class="radio" id="uniform-undefined"><span class=""><input name="optionsRadios2" value="option2" checked="" style="opacity: 0;" type="radio"></span></div>
+                                                                                a<sup>*</sup>
+                                                                            </label>
+                                                                            <label class="radio">
+                                                                                <div class="radio" id="uniform-undefined"><span class=""><input name="optionsRadios2" value="option2" style="opacity: 0;" type="radio"></span></div>
+                                                                                b<sup>*</sup>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_3_7">
+                                                            <p>3-D Static</p>
+                                                            <div class="col-lg-9 offset1">
+                                                                <img src="/img/images/02.PNG" alt="3-d Static" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="eCharts">
+                                                            <span class="pull-left">
+                                                                <span style="vertical-align:super;">Color</span>
+
+                                                                <select id="ddlFirst" ng-model="bar.first" ng-init="bar.first='a'" style="width:50px; margin-left:6px;margin-right: 8px;">
+                                                                    <option value="L">L</option>
+                                                                    <option value="a">a</option>
+                                                                    <option value="b">b</option>
+                                                                    <option value="C">C</option>
+                                                                    <option value="H">H</option>
+                                                                </select>
+                                                                <input type="hidden" name="hidBarplot" id="hidBarplot" ng-model="barPlotClicked" ng-init="barPlotClicked='0'" />
+                                                                <span style="vertical-align: super;">&nbsp;Range</span>
+                                                                <select id="ddlCondition" ng-model="condition.selectedOption" ng-init="condition.selectedOption='Select'" style="width:150px; margin-left:6px;">
+                                                                    <option value="Select">All</option>
+                                                                    <option value="GreaterThanTarget"> > Target</option>
+                                                                    <option value="LessThanTarget"> < Target</option>
+                                                                    <option value="GreaterThanMean"> > Average</option>
+                                                                    <option value="LessThanMean"> < Target</option>
+                                                                </select>
+                                                            </span>
+
+                                                            <span style="margin-top:-15px;">
+                                                                <span style="float:left;margin-right: 10px;margin-top: 7px;margin-left: 10px;"><span style="width: 16px;height: 15px;background-color: #ff9c00;display: block;float: left;margin-right: 8px;"></span> Average</span>
+                                                                <span style="float:left;margin-right: 10px;margin-top: 7px;margin-left: 10px;"><span style="width: 16px;height: 15px;background-color: #0f6f00;display: block;float: left;margin-right: 8px;"></span> Target</span>
+                                                                <span style="float:left;margin-right: 10px;margin-top: 7px;margin-left: 10px;"><span style="width: 16px;height: 15px;background-color: #D2691E;display: block;float: left;margin-right: 8px;"></span> Shade</span>
+                                                            </span>
+                                                            <div class="clearfix"></div>
+                                                            <!--</div>-->
+                                                            <div style="width:100%; height:500px">
+                                                                <e-chart ng-model="bar.first" ng-condition="condition.selectedOption" ng-Isclicked="barPlotClicked" data="dt" bindonce ng-repeat="dt in chBardata">
+                                                                </e-chart>
+
+                                                                <div id="eChartContainer" class="eResize" style="width:100% !important; height:450px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tab-pane" id="eScatterCharts">
+                                                            <span class="pull-left">
+                                                                <input type="hidden" ng-model="scatterPlotClicked" ng-init="scatterPlotClicked='0'" />
+                                                                <select ng-model="scatter.second" ng-init="scatter.second='C'" class="scatter-opt1">
+                                                                    <option value="L">L</option>
+                                                                    <option value="a">a</option>
+                                                                    <option value="b">b</option>
+                                                                    <option value="C">C</option>
+                                                                    <option value="H">H</option>
+                                                                </select>
+                                                            </span>
+                                                            <span class="pull-left">
+
+                                                            </span>
+                                                            <div class="clearfix"></div>
+                                                            <div style="width:100%; height:500px">
+                                                                <e-scatter data="dt" ng-model="scatter.first" ng-Secondmodel="scatter.second" ng-Isclicked="scatterPlotClicked" bindonce ng-repeat="dt in chBardata">
+                                                                </e-scatter>
+
+                                                                <div id="divLoadScatterPlot">
+                                                                    <!--<div id="eScatterContainer" class="eResize" style="width:100% !important; height:450px;">
+                                                                    </div>-->
+                                                                </div>
+                                                            </div>
+
+                                                            <div>
+                                                                <select ng-model="scatter.first" ng-init="scatter.first='L'" class="scatter-opt2">
+                                                                    <option value="L">L</option>
+                                                                    <option value="a">a</option>
+                                                                    <option value="b">b</option>
+                                                                    <option value="C">C</option>
+                                                                    <option value="H">H</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="tab-pane" id="eClusterChart">
+                                                            <input type="hidden" ng-model="clusterPlotClicked" ng-init="clusterPlotClicked='0'" />
+                                                            <span class="pull-right bar-no ">No. of Clusters<input id="filterClusterCount" type="number" min="3" max="150" ng-init="filter.n_count=7" ng-change="getclusters()" ng-model="filter.n_count" value="7" class="form-control N-Formula" /></span>
+
+                                                            <div class="clearfix"></div>
+                                                            <div style="width:100%; height:500px">
+                                                                <e-cluster data="dt" ng-Isclicked="clusterPlotClicked" bindonce ng-repeat="dt in clusterData">
+                                                                </e-cluster>
+
+                                                                <div id="eClusterContainer" class="eResize" style="width:100% !important; height:450px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tab-pane" id="eLineChart">
+
+
+                                                            <input type="hidden" ng-model="nearestFormulaClicked" ng-init="nearestFormulaClicked='0'" />
+                                                            <span class="pull-right bar-no ">No. of Nearest Formulae<input id="filterNearestCount" type="number" min="8" max="20" ng-init="filter.n_cluster=8" ng-change="byAction == true?getNearestFormulaAction(referenceNearestData):getNearestFormula()" ng-model="filter.n_cluster" value="8" class="form-control " /></span>
+
+                                                            <div class="clearfix"></div>
+
+                                                            <div id="divLineReference" class="text-mid-clust ">
+                                                            </div>
+
+                                                            <div style="width:100%; height:500px">
+                                                                <e-line data="dt" ng-Isclicked="nearestFormulaClicked" bindonce ng-repeat="dt in nearestData">
+                                                                </e-line>
+
+                                                                <div id="eLineContainer" class="eResize" style="width:100% !important; height:450px;">
+                                                                </div>
+
+                                                                <div>
+
+
+
+                                                                    <!--<span class="pull-left">-->
+                                                                    <!--<input id="filterNearestCountAction" type="number" min="8" max="20" ng-init="filter.n_cluster=8" ng-change="getNearestFormulaAction()" ng-model="filter.n_cluster" value="8" style="width: 50px; margin-left:5px; margin-right:5px; display:block" />-->
+                                                                    <!--</span>-->
+                                                                    <table datatable="ng" dt-options="dtOptions" class="table table-hover table-condensed table-bordered">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="hidden-phone">Name Of Campaign</th>
+                                                                                <th class="hidden-phone" id="thGroup">Group</th>
+                                                                                <th class="hidden-phone">Brand</th>
+                                                                                <th class="hidden-phone">Line</th>
+                                                                                <th class="hidden-phone">Commercial Shade Name</th>
+                                                                                <th class="hidden-phone">Technical Number</th>
+                                                                                <th class="hidden-phone">Commercial Number</th>
+                                                                                <th class="hidden-phone">Formula Number</th>
+                                                                                <th class="hidden-phone">DeltaE Range Mean</th>
+                                                                                <th class="hidden-phone">DeltaE Target</th>
+                                                                                <th class="hidden-phone">Alkaline Agent</th>
+                                                                                <th class="hidden-phone">Booster Formula Number</th>
+                                                                                <th class="hidden-phone">Quantity 49</th>
+                                                                                <th class="hidden-phone">Quantity 671</th>
+                                                                                <th class="hidden-phone">Developer Strength</th>
+                                                                                <th class="hidden-phone">Developer Formula Number</th>
+                                                                                <th class="hidden-phone">Mixture</th>
+                                                                                <th class="hidden-phone">Processing Time(min)</th>
+                                                                                <th class="hidden-phone">Fiber Code</th>
+                                                                                <th class="hidden-phone">Type Of Fibre</th>
+                                                                                <th class="hidden-phone">Fiber</th>
+                                                                                <th class="hidden-phone">Percent White</th>
+                                                                                <th class="hidden-phone">Fiber Origin</th>
+                                                                                <th class="hidden-phone">L Transposed</th>
+                                                                                <th class="hidden-phone">a Transposed</th>
+                                                                                <th class="hidden-phone">b Transposed</th>
+                                                                                <th class="hidden-phone">C Transposed</th>
+                                                                                <th class="hidden-phone">H Transposed</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody class="New-table-tbody">
+                                                                            <tr bindonce ng-repeat="d in nearest[0]">
+
+                                                                                <td>{{ d.Name_of_Campaign }}</td>
+                                                                                <td>{{ d.Group }}</td>
+                                                                                <td>{{ d.Brand }}</td>
+                                                                                <td>{{ d.Line }}</td>
+                                                                                <td>{{ d.Commercial_Shade_Name }}</td>
+                                                                                <td>{{ d.Technical_Number }}</td>
+                                                                                <td>{{ d.Commercial_Number }}</td>
+                                                                                <td>{{ d.Formula_Number }}</td>
+                                                                                <td>{{ d.deltaE_mean | number: 2}}</td>
+                                                                                <td>{{ d.deltaE_target | number: 2}}</td>
+                                                                                <td>{{ d.Alkaline_Agent }}</td>
+                                                                                <td>{{ d.Booster_Formula_Number }}</td>
+                                                                                <td>{{ d.Quantity_49 }}</td>
+                                                                                <td>{{ d.Quantity_671 }}</td>
+                                                                                <td>{{ d.Developer_Strength }}</td>
+                                                                                <td>{{ d.Developer_Formula_Number }}</td>
+                                                                                <td>{{ d.Mixture }}</td>
+                                                                                <td class="text-right">{{ d.Processing_Time_min }}</td>
+                                                                                <td>{{ d.Fiber_Code }}</td>
+                                                                                <td>{{ d.Type_of_Fibre }}</td>
+                                                                                <td>{{ d.Fiber }}</td>
+                                                                                <td class="text-right">{{ d.Percent_White }}</td>
+                                                                                <td>{{ d.Fiber_Origin }}</td>
+                                                                                <td class="text-right">{{ d.L_Transposed | number: 2}}</td>
+                                                                                <td class="text-right">{{ d.a_Transposed | number: 2}}</td>
+                                                                                <td class="text-right">{{ d.b_Transposed | number: 2}}</td>
+                                                                                <td class="text-right">{{ d.C_Transposed | number: 2}}</td>
+                                                                                <td class="text-right">{{ d.H_Transposed | number: 2}}</td>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tab-pane" id="eScatter_3D">
+                                                            <input type="hidden" ng-model="scatter3DClicked" ng-init="scatter3DClicked='0'" />
+                                                            <div style="width:100%; height:500px">
+                                                                <e-Scatterthreed data="dt" ng-range="filter" ng-Isclicked="scatter3DClicked" bindonce ng-repeat="dt in chBardata">
+                                                                </e-Scatterthreed>
+
+                                                                <div id="testID">
+                                                                    <!--<div id="eScatter3D" class="eResize" style="width:100% !important; height:450px;">
+                                                                    </div>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tab-pane" id="eCluster_3D">
+
+                                                            <span class="pull-right bar-no ">No. of Clusters<input id="filterClusterCount" type="number" min="3" max="150" ng-init="filter.n_count=7" ng-change="getclusters()" ng-model="filter.n_count" value="7" class="form-control N-Formula" /></span>
+
+                                                            <div class="clearfix"></div>
+                                                            <input type="hidden" />
+                                                            <div style="width:100%; height:500px">
+                                                                <e-cluster3d data="dt" bindonce ng-repeat="dt in clusterData">
+                                                                </e-cluster3d>
+
+                                                                <div id="testClusterID">
+                                                                    <!--<div id="eScatter3D" class="eResize" style="width:100% !important; height:450px;">
+                                                                    </div>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--END TABS-->
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END PAGE CONTENT-->
+            </div>
+            <!-- END PAGE CONTAINER-->
+        </div>
+        <!-- END PAGE -->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="">
+
+            <!-- Modal content-->
+            <form name="formUpdateShade">
+                <div class="modal-dialog modal-lg ">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Update Shade</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="row">
+
+                                <div class="col-lg-4 col-new">
+
+                                    <div class="row-data-all">
+                                        <input type="hidden" ng-model="selectedData._id" class="f-width" />
+                                        <input type="hidden" ng-model="selectedData.Sprint_Id" />
+                                        <input id="b64Image_Update" type="hidden" />
+                                        <span class="heading-all">Name Of Campaign</span> <span class="input-all"><input type="text" ng-model="selectedData.Name_of_Campaign" class="f-width" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Group</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Group" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Brand</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Brand" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Line</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Line" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Reflect</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Reflect" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Primary Reflect</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Primary_Reflect" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Secondary Reflect</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Secondary_Reflect" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Formula Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Formula_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Commercial Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Commercial_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Booster Formula Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Booster_Formula_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Alkaline Agent</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Alkaline_Agent" /></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-new">
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Quantity 49</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Quantity_49" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Quantity 671</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Quantity_671" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Developer Strength</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Developer_Strength" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Developer Formula Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Developer_Formula_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Mixture</span> <span class="input-all"><input type="text" class="f-width" name="Mixture_u" ng-model="selectedData.Mixture" required /></span>
+                                        <span class="validation-text" ng-show="formUpdateShade.Mixture_u.$invalid">Enter valid Mixture</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Processing Time(min.)</span> <span class="input-all"><input type="number" class="f-width" ng-model="selectedData.Processing_Time_min" name="Processing_Time_min_u" ng-init="selectedData.Processing_Time_min=0" required /></span>
+                                        <span class="validation-text" ng-show="formUpdateShade.Processing_Time_min_u.$invalid">Enter valid Processing Time</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Fiber Code</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Fiber_Code" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Type Of Fibre</span> <span class="input-all"><input type="text" class="f-width" ng-model="selectedData.Type_of_Fibre" /></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-new">
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Fiber</span> <span class="input-all"><input type="text" class="f-width" name="Fiber_u" ng-model="selectedData.Fiber" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Percent White</span> <span class="input-all"><input type="number" class="f-width" name="Percent_White_u" ng-model="selectedData.Percent_White" /></span>
+                                        <span class="validation-text" ng-show="formUpdateShade.Percent_White_u.$invalid">Enter valid Percent White</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Fiber Origin</span> <span class="input-all"><input type="text" class="f-width" name="Fiber_Origin_u" ng-model="selectedData.Fiber_Origin" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">L Transposed</span> <span class="input-all"><input type="number" step="0.01" min="0" max="100" class="f-width" name="L_Transposed_u" ng-model="selectedData.L_Transposed" ng-init="selectedData.L_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formUpdateShade.L_Transposed_u.$invalid">b must be between 0 TO 100</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">a Transposed</span> <span class="input-all"><input type="number" step="0.01" min="-60" max="60" class="f-width" name="a_Transposed_u" ng-model="selectedData.a_Transposed" ng-init="selectedData.a_Transposed=0" required /></span>
+                                        <span style="color:red" ng-show="formUpdateShade.a_Transposed_u.$invalid">b must be between -60 TO 60</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">b Transposed</span> <span class="input-all"><input type="number" step="0.01" min="-60" max="60" name="b_Transposed_u" class="f-width" ng-model="selectedData.b_Transposed" ng-init="selectedData.b_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formUpdateShade.b_Transposed_u.$invalid">b must be between -60 TO 60</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">C Transposed</span> <span class="input-all"><input type="number" step="0.01" class="f-width" name="C_Transposed_u" ng-model="selectedData.C_Transposed" ng-init="selectedData.C_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formUpdateShade.C_Transposed_u.$invalid">Enter valid C Transposed</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">H Transposed</span> <span class="input-all"><input type="number" step="0.01" class="f-width" name="H_Transposed_u" ng-model="selectedData.H_Transposed" ng-init="selectedData.H_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formUpdateShade.H_Transposed_u.$invalid">Enter valid H Transposed</span>
+                                    </div>
+
+                                    <div class="col-lg-8 pull-right" style="padding-right: 0px;">
+                                        <a download href="/shades/sprint_images/{{selectedData.Sprint_Id}}.jpg" class="icon-download_add">
+                                            <img id='img-upload' src="/shades/sprint_images/{{selectedData.Sprint_Id}}.jpg" alt="your image" class="img-thumbnail" style="width: 100%;height: 100px; margin-bottom:5px;" />
+                                        </a> <div class="input-group input-group-sm">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-info btn-file">
+                                                    Browse… <input type="file" name="file" accept="image/png, image/jpeg, image/gif" id="imgInp" onload="encodeImageFileAsURL_Update(this)" onchange="encodeImageFileAsURL_Update(this)">
+                                                </span>
+                                            </span>
+                                            <input id='urlname' type="text" class="form-control" readonly value="{{selectedData.Sprint_Id}}.jpg" disabled style="pointer-events:none">
+                                            <span class="input-group-btn">
+                                                <button id="clear" class="btn btn-info" ng-click="clearImage(selectedData.Sprint_Id)">Clear</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-info" ng-click="updateShade(selectedData)" ng-disabled="formUpdateShade.$invalid"><i class="icon-upload"></i> Update</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="">
+        <div class="modal fade m-width" id="myModal" role="dialog">
+
+        </div>
+
+        <div class="modal fade m-width" id="addModal" role="dialog" ">
+            <form name="formAddShade">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button id="btnAddClose" type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add New Shade</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="row-fluid">
+
+                                <div class="col-lg-4 col-new">
+                                    <input id="b64Image" type="hidden" />
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Name Of Campaign</span> <span class="input-all"><input type="text" ng-model="addData.Name_of_Campaign" class="f-width" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Campaign Date</span> <span class="input-all"><input type="text" ng-model="addData.Date_Campaign" class="f-width" id="datepicker" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Group</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Group" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Division</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Division" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Brand</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Brand" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Line</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Line" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Reflect</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Reflect" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Primary Reflect</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Primary_Reflect" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Secondary Reflect</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Secondary_Reflect" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Type Of Product</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Type_of_Product" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Product Form</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Product_Form" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Formula Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Formula_Number" /></span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-lg-4 col-new">
+
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Commercial Shade Name</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Commercial_Shade_Name" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Technical Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Technical_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Commercial Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Commercial_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Level No</span> <span class="input-all"><input type="number" step="0.01" name="Level" class="f-width" ng-model="addData.Level" /></span>
+                                        <span class="validation-text" ng-show="formAddShade.Level.$invalid">Enter valid Level No</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Booster Formula Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Booster_Formula_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Alkaline Agent</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Alkaline_Agent" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Quantity 49</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Quantity_49" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Quantity 671</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Quantity_671" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Developer Strength</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Developer_Strength" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Developer Formula Number</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Developer_Formula_Number" /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Mixture</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Mixture" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Processing Time(min.)</span> <span class="input-all"><input type="number" name="Processing_Time_min" class="f-width" ng-model="addData.Processing_Time_min" ng-init="addData.Processing_Time_min=0" required /></span>
+                                        <span class="validation-text" ng-show="formAddShade.Processing_Time_min.$invalid">Enter valid Processing Time.</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Fiber Code</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Fiber_Code" /></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-new">
+
+
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Type Of Fibre</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Type_of_Fibre" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Fiber</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Fiber" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Percent White</span> <span class="input-all"><input type="number" class="f-width" name="Percent_White" ng-model="addData.Percent_White" /></span>
+                                        <span class="validation-text" ng-show="formAddShade.Percent_White.$invalid">Enter valid Percent White</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">Fiber Origin</span> <span class="input-all"><input type="text" class="f-width" ng-model="addData.Fiber_Origin" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">L Transposed</span> <span class="input-all"><input type="number" min="0" max="100" step="0.01" class="f-width" name="L_Transposed" ng-model="addData.L_Transposed" ng-init="addData.L_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formAddShade.L_Transposed.$invalid">L must be between 0 TO 100</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">a Transposed</span> <span class="input-all"><input type="number" min="-60" max="60" step="0.01" class="f-width" name="a_Transposed" ng-model="addData.a_Transposed" ng-init="addData.a_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formAddShade.a_Transposed.$invalid">a must be between -60 TO 60</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">b Transposed</span> <span class="input-all"><input type="number" min="-60" max="60" step="0.01" name="b_Transposed" class="f-width" ng-model="addData.b_Transposed" ng-init="addData.b_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formAddShade.b_Transposed.$invalid">b must be between -60 TO 60</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">C Transposed</span> <span class="input-all"><input type="number" class="f-width" step="0.01" name="C_Transposed" ng-model="addData.C_Transposed" ng-init="addData.C_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formAddShade.C_Transposed.$invalid">Enter valid C Transposed</span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all">H Transposed</span> <span class="input-all"><input type="number" class="f-width" step="0.01" name="H_Transposed" ng-model="addData.H_Transposed" ng-init="addData.H_Transposed=0" required /></span>
+                                        <span class="validation-text" ng-show="formAddShade.H_Transposed.$invalid">Enter valid H Transposed</span>
+                                    </div>
+
+                                    <!-- image-preview-filename input [CUT FROM HERE]-->
+                                    <div class="input-group image-preview">
+                                        <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn">
+                                            <!-- image-preview-clear button -->
+                                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                <span class="icon-remove"></span> Clear
+                                            </button>
+                                            <!-- image-preview-input -->
+                                            <div class="btn btn-default image-preview-input">
+                                                <span class="icon-picture"></span>
+                                                <span class="image-preview-input-title">Browse</span>
+                                                <!--<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />-->
+                                                <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" onchange="encodeImageFileAsURL(this)" id="shadeImgUpload" /> <!-- rename it -->
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <!-- /input-group image-preview [TO HERE]-->
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-info" ng-disabled="formAddShade.$invalid" ng-click="addShade(addData)"><i class="icon-plus-sign"></i> Add</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <!--added by Vivek-->
+
+        <div class="modal fade m-width" id="showNotification" role="dialog">
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="btnErrorClose" type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Erroneous Data</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="row-fluid">
+
+                            <div class="span12">
+                                <span>Please correct the displayed data in uploaded csv and upload again.</span>
+                                <table datatable="ng" dt-options="dtOptions" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name Of Campaign</th>
+                                            <th>Campaign Date</th>
+                                            <th>Group</th>
+                                            <th>Division</th>
+                                            <th>Brand</th>
+                                            <th>Line</th>
+                                            <th>Type Of Product</th>
+                                            <th>Product Form</th>
+                                            <th>Formula Number</th>
+                                            <th>Commercial Shade Name</th>
+                                            <th>Technical Number</th>
+                                            <th>Commercial Number</th>
+                                            <th>Level No</th>
+                                            <th>Booster Formula Number</th>
+                                            <th>Alkaline Agent</th>
+                                            <th>Quantity 49</th>
+                                            <th>Quantity 671</th>
+                                            <th>Developer Strength</th>
+                                            <th>Developer Formula Number</th>
+                                            <th>Mixture</th>
+                                            <th>Processing Time(min.)</th>
+                                            <th>Fiber Code</th>
+                                            <th>Type Of Fibre</th>
+                                            <th>Fiber</th>
+                                            <th>Percent White</th>
+                                            <th>Fiber Origin</th>
+                                            <th>L Transposed</th>
+                                            <th>a Transposed</th>
+                                            <th>b Transposed</th>
+                                            <th>C Transposed</th>
+                                            <th>H Transposed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="New-table-tbody">
+                                        <tr bindonce ng-repeat="data in notificationData">
+                                            <td>{{data.Name_of_Campaign}}</td>
+                                            <td>{{data.Date_Campaign}}</td>
+                                            <td>{{data.Group}}</td>
+                                            <td>{{data.Division}}</td>
+                                            <td>{{data.Brand}}</td>
+                                            <td>{{data.Line}}</td>
+                                            <td>{{data.Type_of_Product}}</td>
+                                            <td>{{data.Product_Form}}</td>
+                                            <td>{{data.Formula_Number}}</td>
+                                            <td>{{data.Commercial_Shade_Name}}</td>
+                                            <td>{{data.Technical_Number}}</td>
+                                            <td>{{data.Commercial_Number}}</td>
+                                            <td>{{data.Level}}</td>
+                                            <td>{{data.Booster_Formula_Number}}</td>
+                                            <td>{{data.Alkaline_Agent}}</td>
+                                            <td>{{data.Quantity_49}}</td>
+                                            <td>{{data.Quantity_671}}</td>
+                                            <td>{{data.Developer_Strength}}</td>
+                                            <td>{{data.Developer_Formula_Number}}</td>
+                                            <td>{{data.Mixture}}</td>
+                                            <td>{{data.Processing_Time_min}}</td>
+                                            <td>{{data.Fiber_Code}}</td>
+                                            <td>{{data.Type_of_Fibre}}</td>
+                                            <td>{{data.Fiber}}</td>
+                                            <td>{{data.Percent_White}}</td>
+                                            <td>{{data.Fiber_Origin}}</td>
+                                            <td>{{data.L_Transposed}}</td>
+                                            <td>{{data.a_Transposed}}</td>
+                                            <td>{{data.b_Transposed}}</td>
+                                            <td>{{data.C_Transposed}}</td>
+                                            <td>{{data.H_Transposed}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Add User-->
+
+        <div class="modal fade m-width" id="addUserModel" role="dialog" style="top: 0%;">
+            <form name="formAddUser">
+                <div class="modal-dialog" style="width: 80% !important;">
+
+                    <!-- Modal content-->
+                    <div class="modal-content" style="padding-bottom:10px;">
+                        <div class="modal-header">
+                            <button id="btnAddUserClose" type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add New User</h4>
+                            <input type="hidden" ng-model="user._id" ng-init="user._id=0" class="f-width" />
+                        </div>
+                        <div class="modal-body" style="padding-bottom: 0px;">
+                            <div class="row">
+                                <div class="col-lg-4 col-new">
+                                    <div class="row-data-all">
+                                        <span class="heading-all-1">First Name</span> <span class="input-all-1"><input type="text" ng-model="user.firstname" class="f-width" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all-1">Last Name</span> <span class="input-all-1"><input type="text" ng-model="user.lastname" class="f-width" required /></span>
+                                    </div>
+                                </div>
+                                <div class=" col-lg-4 col-new">
+                                    <div class="row-data-all">
+                                        <span class="heading-all-1">Email</span> <span class="input-all-1"><input type="email" ng-model="user.email" class="f-width" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all-1">Contact No</span> <span class="input-all-1"><input type="text" ng-model="user.contact" maxlength="12" numbers-only class="f-width" required /></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4 col-new">
+                                    <div class="row-data-all">
+                                        <span class="heading-all-1">User Name</span> <span class="input-all-1"><input type="text" ng-model="user.username" class="f-width" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all-1">Password</span> <span class="input-all-1"><input type="text" ng-model="user.password" class="f-width" required /></span>
+                                    </div>
+                                    <div class="row-data-all">
+                                        <span class="heading-all-1">Role</span> <span class="input-all-1">
+                                            <select ng-model="user.role" required class="form-control">
+                                                <option value="admin">Admin</option>
+                                                <option value="user">User</option>
+                                            </select>
+
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+ 
+                        <div class="" style="overflow: hidden; clear: both;">
+                            <div class="pull-right" style="margin-right: 15px; margin-bottom:2px;">
+                                <button id="btnGeneratePassword" type="button" class="btn btn-info" ng-click="generatePassword()">Generate Password</button>
+                                <button id="btnAddUser" type="submit" class="btn btn-info" ng-disabled="formAddUser.$invalid" ng-click="addUser(user)"><i class="icon-plus-sign"></i> Add</button>
+                                <button type="reset" id="frmResetAddUser" ng-click="clearUserData(user)" class="btn btn-info"><i class="icon-remove"></i> Clear</button>
+
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="table_scroll_heigt">
+
+                                    <table datatable="ng" class="table table-hover table-condensed table-bordered User-table" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th class="hidden-phone" style="padding: 5px 28px !important;">First Name</th>
+                                                <th class="hidden-phone" style="padding: 5px 28px !important;">Last Name</th>
+                                                <th class="hidden-phone" style="padding: 5px 28px !important;">Email</th>
+                                                <th class="hidden-phone" style="padding: 5px 28px !important;">Contact No</th>
+                                                <th class="hidden-phone" style="padding: 5px 28px !important;">User Name</th>
+                                                <th class="hidden-phone" style="padding: 5px 28px !important;">Role</th>
+                                                <th class="hidden-phone" style="padding: 5px 28px !important;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="New-table-tbody">
+                                            <tr bindonce ng-repeat="d in systemUsersData">
+                                                <td>{{ d.firstname }}</td>
+                                                <td>{{ d.lastname }}</td>
+                                                <td>{{ d.email }}</td>
+                                                <td>{{ d.contact }}</td>
+                                                <td>{{ d.username }}</td>
+                                                <td>{{ d.role }}</td>
+                                                <!--<td class="flex-add new-align ">-->
+                                                <td class=" ">
+                                                    <button ng-hide="!isAdmin" type="button" class="btn btn-info btn-lg myBtn btn-change-add" data-toggle="modal" ng-click="EditUser(d)" data-new="tooltip" title="Edit" data-placement="top"><i class="icon-edit"></i></button>
+                                                    <button ng-hide="!isAdmin" type="button" class="btn btn-info btn-lg myBtn btn-change-add" data-toggle="modal" ng-click="deleteUser(d)" data-new="tooltip" title="Delete" data-placement="top"><i class="icon-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <!--<div id="footer">
+        2017 &copy;  Dashboard.
+        <div class="span pull-right">
+            <span class="go-top"><i class="icon-arrow-up"></i></span>
+        </div>
+    </div>-->
+    <!-- END FOOTER -->
+    <!-- BEGIN JAVASCRIPTS -->
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <script src="/Scripts/jquery-1.8.3.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="/assets/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!--<script src="/assets/bootstrap/js/bootstrap.min.js"></script>-->
+    <script src="/assets/jquery-knob/js/jquery.knob.js"></script>
+    <script src="/assets/flot/jquery.flot.js"></script>
+    <script src="/assets/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="/assets/uniform/jquery.uniform.min.js"></script>
+    <script src="/filter/lib/jquery.mousewheel.min.js"></script>
+    <script src="/filter/jQRangeSlider-withRuler-min.js"></script>
+    <script src="/filter/jQEditRangeSlider-withRuler-min.js"></script>
+    <script type="text/javascript" src="/assets/data-tables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/assets/data-tables/DT_bootstrap.js"></script>
+    <script src="/fastselect/fastselect.standalone.js"></script>
+    <script src="/Scripts/scripts.js"></script>
+    <script src="/AngularScripts/chosen.jquery.js"></script>
+    <script>
+        $(function () {
+            $('.chosen-select').chosen();
+            $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+        });
+    </script>
+
+    <style>
+        .span9 {
+        }
+
+        .Go_opacity_div {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .span-new {
+            width: 100%;
+            margin-left: 0% !important;
+        }
+
+        .table_scroll_heigt{ max-height:450px;  overflow-x:hidden;}
+    </style>
+    <script>
+        jQuery(document).ready(function () {
+            // initiate layout and plugins
+            App.init();
+        });
+        function TestData() {
+            alert('AAA');
+        }
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(".Data-Home").click(function () {
+                $(".Chart-h").hide(500);
+                $(".c-N-show").hide(500);
+                $(".new-home").toggle(500);
+            });
+            $(".M-Visualization").click(function () {
+                $(".new-home").hide(500);
+                $(".c-N-show").hide(500);
+                $(".Chart-h").toggle(500);
+            });
+
+            $(".M-Analytics").click(function () {
+                $(".new-home").hide(500);
+                $(".Chart-h").hide(500);
+                $(".c-N-show").toggle(500);
+
+            });
+            $('.btn-breadcrumb  a').click(function (e) {
+                $('a').removeClass('active1');
+                $(this).addClass('active1');
+            });
+
+
+
+        });
+
+
+    </script>
+
+    <script>
+        $(".div-scroller").css('height', '553px');
+        $(".Browse_Data1").click(function () {
+            $(".div-scroller").css('height', '553px');
+        });
+        $(".Bar_Chart-h").click(function () {
+            $(".div-scroller").css('height', '556px');
+        });
+
+
+        $(".Scatter_Plot-h").click(function () {
+            $(".div-scroller").css('height', '596px');
+        });
+        $(".Dynamic-h").click(function () {
+            $(".div-scroller").css('height', '553px');
+        });
+
+        $(".Clustering-h").click(function () {
+            $(".div-scroller").css('height', '553px');
+        });
+        $(".NearestFormula-h").click(function () {
+            $(".div-scroller").css('height', '924px');
+        });
+
+
+        //$('.two').css("width", "100%");
+        //$('.two').css("left", "0px")
+
+
+        $(".toggle-slide").toggle(
+
+            function () { $('.two').animate({ width: '75%', left: '25%' }); },
+            function () {
+                $('.two').animate({ width: '100%', left: '0px' });
+            });
+
+        function showdiv() {
+            //  $('.two').animate({ width: '97%', left: '16px' });
+            $('.two').animate({ width: '75.7%', left: '24.3%' });
+            $(".one").show();
+        }
+        function hidediv() {
+            $('.two').animate({ width: '100%', left: '0px' });
+            $(".one").show();
+        }
+
+    </script>
+</body>
+<!-- END BODY -->
+</html>
+<script type="text/javascript">
+        //$(".fstChoiceRemove").cl(function () { alert('Click'); });
+        function CloseAll() {
+            //alert('Click');
+        }
+</script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap-fileupload.js"></script>
+<link href="/Content/jquery-confirm.min.css" rel="stylesheet" />
+<script src="/AngularScripts/jquery-confirm.min.js"></script>
+<script type="text/javascript">
+        window.onresize = function () {
+            $(".eResize").each(function () {
+                var id = $(this).attr('_echarts_instance_');
+                window.echarts.getInstanceById(id).resize();
+            });
+        };
+</script>
+<script>
+        $(function () {
+            $("#datepicker").datepicker().on('change', function () {
+                $('.datepicker').hide();
+            });;
+        });
+        $(".loader-container").hide();
+
+
+
+        //for Filter resize
+        $(document).ready(function () {
+            setTimeout(function () {
+                $(window).trigger('resize');
+            }, 1000);
+        });
+
+
+        //$(".Go_opacity").click(function () {
+
+        //    $(".div-scroller").addClass("Go_opacity_div");
+
+           // $("#slider").editRangeSlider({ defaultValues: { min: 10, max: 90 } });
+        //      $(".div-scroller").removeClass("Go_opacity_div");
+        //});
+
+        //$(".new_height").click(function () {
+        //    $(".defult-height").css('height', '540px');
+        //    $(".widget-body").removeClass("defult-height")
+        //});
+</script>
+
+
+
+<script type="text/javascript">
+        $(document).on('click', '#close-preview', function () {
+            $('.image-preview').popover('hide');
+            // Hover befor close the preview
+            $('.image-preview').hover(
+                function () {
+                    $('.image-preview').popover('show');
+                },
+                function () {
+                    $('.image-preview').popover('hide');
+                }
+            );
+        });
+
+        $(function () {
+            // Create the close button
+            var closebtn = $('<button/>', {
+                type: "button",
+                text: 'x',
+                id: 'close-preview',
+                style: 'font-size: initial;',
+            });
+            closebtn.attr("class", "close pull-right");
+            // Set the popover default content
+            $('.image-preview').popover({
+                trigger: 'manual',
+                html: true,
+                title: "<strong>Preview</strong>" + $(closebtn)[0].outerHTML,
+                content: "There's no image",
+                placement: 'bottom'
+            });
+            // Clear event
+            $('.image-preview-clear').click(function () {
+                $('.image-preview').attr("data-content", "").popover('hide');
+                $('.image-preview-filename').val("");
+                $('.image-preview-clear').hide();
+                $('.image-preview-input input:file').val("");
+                $(".image-preview-input-title").text("Browse");
+            });
+            // Create the preview image
+            $(".image-preview-input input:file").change(function () {
+                var img = $('<img/>', {
+                    id: 'dynamic',
+                    width: 250,
+                    height: 200
+                });
+                var file = this.files[0];
+                var reader = new FileReader();
+                // Set preview image into the popover data-content
+                reader.onload = function (e) {
+                    $(".image-preview-input-title").text("Change");
+                    $(".image-preview-clear").show();
+                    $(".image-preview-filename").val(file.name);
+                    img.attr('src', e.target.result);
+                    $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+
+        $(document).ready(function () {
+
+            $(document).on('change', '.btn-file :file', function () {
+                var input = $(this),
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [label]);
+            });
+
+            $('.btn-file :file').on('fileselect', function (event, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = label;
+
+                if (input.length) {
+                    input.val(log);
+                } else {
+                    if (log)
+                        //alert(log)
+                            ;
+                }
+
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#img-upload').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#imgInp").change(function () {
+                readURL(this);
+            });
+
+            //$("#clear").click(function () {
+            //    $('#img-upload').attr('src', '/shades/sprint_images/{{d.Sprint_Id}}.jpg');
+            //    $('#urlname').val('Dammy image.jpg');
+            //});
+        });
+</script>
