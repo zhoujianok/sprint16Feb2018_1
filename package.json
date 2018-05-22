@@ -1,0 +1,22 @@
+{
+  "name": "sprint",
+  "version": "1.0.0",
+  "description": "Demo app",
+  "main": "app.js",
+  "author": "Amol",
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5",
+    "mocha": "^3.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
+    "mocha-junit-reporter": "^1.12.0"
+  }
+}
