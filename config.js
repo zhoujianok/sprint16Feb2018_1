@@ -6,7 +6,7 @@ config.mongodb = {};
 
 config.host = "";
 config.port = process.env.PORT || 3000;
-config.flask.endpoint = "https://pythonapi-test.azurewebsites.net/";
+config.flask.endpoint = process.env.CUSTOMCONNSTR_FlaskServerEndPoint;
 //config.flask.endpoint = "http://127.0.0.1:5555";
 config.mongodb.host = "localhost"
 config.mongodb.dbname = "LorialTestDB"
