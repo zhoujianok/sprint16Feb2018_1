@@ -87,7 +87,7 @@ mongoose.model('user', user);
 mongoose.model('userAuthorization', userAuthorization);
 mongoose.model('file_upload_log', file_upload_log);
 //mongoose.connect('mongodb://' + config.mongodb.host + "/" + config.mongodb.dbname);
-mongoose.connect('mongodb://sprintcosmosdb:v15ztNVJjQHd74fKrD4hh7PVmQXNXUlqb6iRG2s5h2VypPNUlJC9Y6z7WvrbeEmjwpTfX1nbMjNl6RcfENzIUg==@sprintcosmosdb.documents.azure.com:10255/LorialTestDB?ssl=true');
+mongoose.connect(process.env.CUSTOMCONNSTR_MyDBConnString);
 
 var countersmodel = mongoose.model('counters');
 var logcountersmodel = mongoose.model('logcounters');
